@@ -19,7 +19,7 @@
             android:minHeight="?attr/actionBarSize"/>
         <ScrollView
             android:layout_width="match_parent"
-            android:background="#efefef"
+            android:background="#FFF"
             android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -29,7 +29,6 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_margin="10dp"
-                    android:background="#FFF"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="match_parent"
@@ -200,7 +199,6 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_margin="10dp"
-                    android:background="#FFF"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="match_parent"
