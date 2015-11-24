@@ -59,6 +59,8 @@
 
         <activity
             android:name="com.appracks.easy_wallet.MainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:label="Summery"
             >
         </activity>
     </application>
