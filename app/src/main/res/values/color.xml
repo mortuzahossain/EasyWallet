@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#366d8b</color>
     <color name="colorAccent">#536DFE</color>
     <color name="textColorPrimary">#212121</color>
-    <color name="textColorSecondary">#727272</color>
+    <color name="textColorSecondary">#ececec</color>
 
     <color name="list_item_title">#fff</color>
     <color name="color_summery_item_pressed">#e9e7e7</color>

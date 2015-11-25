@@ -7,4 +7,5 @@
 
     <string name="analytics_id">analytics_id</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_income">Income | </string>
 </resources>

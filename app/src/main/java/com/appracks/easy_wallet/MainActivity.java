@@ -2,6 +2,7 @@ package com.appracks.easy_wallet;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.appracks.easy_wallet.income.Income;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                Toast.makeText(getApplicationContext(),"ly_income",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, Income.class));
             }
         });
         LinearLayout ly_expense=(LinearLayout)findViewById(R.id.ly_expense);

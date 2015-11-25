@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_filter_category">
+        <item>Current week</item>
+        <item>Current month</item>
+        <item>Current year</item>
+        <item>All statement</item>
+        <item>Date wise</item>
+    </string-array>
+</resources>
