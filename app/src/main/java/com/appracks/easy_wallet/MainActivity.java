@@ -13,29 +13,41 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
-    NavigationView navMenu;
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
+        toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-        navMenu= (NavigationView) findViewById(R.id.navMenu);
-        navMenu.setNavigationItemSelectedListener(this);
+
+        setNavMenu();
+
+    }
+
+    private void setNavMenu(){
         myDrawer= (DrawerLayout) findViewById(R.id.myDrawer);
         actionBarDrawerToggle=new ActionBarDrawerToggle(this, myDrawer,toolbar, R.string.drawer_open, R.string.drawer_close);
         myDrawer.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        LinearLayout ly_summery=(LinearLayout)findViewById(R.id.ly_summery);
+        ly_summery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Oh yes",Toast.LENGTH_LONG).show();
+            }
+        });
     }
-
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
@@ -52,32 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialog.show();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
-        int itemId=menuItem.getItemId();
-        if(itemId == R.id.mi_summery){
-            myDrawer.closeDrawer(GravityCompat.START);
-            Toast.makeText(getApplicationContext(),"ok 1",Toast.LENGTH_LONG).show();
-            return true;
-        }else if(itemId == R.id.mi_income){
-            myDrawer.closeDrawer(GravityCompat.START);
-            Toast.makeText(getApplicationContext(),"ok 2",Toast.LENGTH_LONG).show();
-            return true;
-        }else if(itemId == R.id.mi_expense){
-            myDrawer.closeDrawer(GravityCompat.START);
-
-            return true;
-        }else if(itemId == R.id.mi_graph){
-            myDrawer.closeDrawer(GravityCompat.START);
-
-            return true;
-        }else if(itemId == R.id.mi_others){
-            myDrawer.closeDrawer(GravityCompat.START);
-
-            return true;
-        }
-        return false;
-    }
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
