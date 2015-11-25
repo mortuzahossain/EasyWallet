@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mi_summery"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Summery"/>
+    <item android:id="@+id/mi_income"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Income"/>
+    <item android:id="@+id/mi_expense"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Expense"/>
+    <item android:id="@+id/mi_graph"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Graph"/>
+    <item android:id="@+id/mi_others"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Others"/>
+</menu>

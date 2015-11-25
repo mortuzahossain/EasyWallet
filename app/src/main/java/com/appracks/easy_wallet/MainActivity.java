@@ -3,22 +3,37 @@ package com.appracks.easy_wallet;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    Toolbar toolbar;
+    NavigationView navMenu;
+    DrawerLayout myDrawer;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar=(Toolbar)findViewById(R.id.toolBar);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        navMenu= (NavigationView) findViewById(R.id.navMenu);
+        navMenu.setNavigationItemSelectedListener(this);
+        myDrawer= (DrawerLayout) findViewById(R.id.myDrawer);
+        actionBarDrawerToggle=new ActionBarDrawerToggle(this, myDrawer,toolbar, R.string.drawer_open, R.string.drawer_close);
+        myDrawer.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
     }
 
     @Override
@@ -37,6 +52,32 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+        int itemId=menuItem.getItemId();
+        if(itemId == R.id.mi_summery){
+            myDrawer.closeDrawer(GravityCompat.START);
+            Toast.makeText(getApplicationContext(),"ok 1",Toast.LENGTH_LONG).show();
+            return true;
+        }else if(itemId == R.id.mi_income){
+            myDrawer.closeDrawer(GravityCompat.START);
+            Toast.makeText(getApplicationContext(),"ok 2",Toast.LENGTH_LONG).show();
+            return true;
+        }else if(itemId == R.id.mi_expense){
+            myDrawer.closeDrawer(GravityCompat.START);
+
+            return true;
+        }else if(itemId == R.id.mi_graph){
+            myDrawer.closeDrawer(GravityCompat.START);
+
+            return true;
+        }else if(itemId == R.id.mi_others){
+            myDrawer.closeDrawer(GravityCompat.START);
+
+            return true;
+        }
+        return false;
+    }
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
