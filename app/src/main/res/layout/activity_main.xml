@@ -40,6 +40,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Income summery" />
                     <LinearLayout
+                        android:id="@+id/ly_current_week_in"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -71,6 +72,7 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ly_current_month_in"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -102,6 +104,7 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ly_current_year_in"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -133,6 +136,7 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ly_total_in"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -206,6 +210,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Expense summery" />
                     <LinearLayout
+                        android:id="@+id/ly_current_week_ex"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -237,6 +242,7 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ly_current_month_ex"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -268,6 +274,7 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ly_current_year_ex"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -299,6 +306,7 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ly_total_ex"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:paddingTop="5dp"
@@ -337,8 +345,7 @@
         android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
+        <LinearLayout android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
@@ -352,7 +359,7 @@
                     android:layout_width="match_parent"
                     android:text="Current Balance"
                     android:gravity="center"
-                    android:textColor="#fff"
+                    android:textColor="#ececec"
                     android:singleLine="true"
                     android:textSize="24dp"
                     android:layout_height="wrap_content" />
@@ -374,15 +381,14 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="1dp"
                 android:orientation="horizontal"
-                android:background="@drawable/nav_list_selector">
+                android:background="@color/list_background_pressed">
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="12dp"
+                    android:contentDescription="@string/app_name"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement"
-                    android:layout_centerVertical="true" />
+                    android:src="@drawable/ico_add_statement" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -390,8 +396,7 @@
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title"
-                    android:gravity="center"
-                    android:paddingRight="20dp"/>
+                    android:gravity="center" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ly_income"
@@ -404,11 +409,10 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="12dp"
+                    android:contentDescription="@string/app_name"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement"
-                    android:layout_centerVertical="true" />
+                    android:src="@drawable/ico_add_statement" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -416,8 +420,7 @@
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title"
-                    android:gravity="center"
-                    android:paddingRight="20dp"/>
+                    android:gravity="center" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ly_expense"
@@ -430,11 +433,10 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement"
-                    android:layout_centerVertical="true" />
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ico_add_statement" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -442,8 +444,7 @@
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title"
-                    android:gravity="center"
-                    android:paddingRight="20dp"/>
+                    android:gravity="center" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ly_graph"
@@ -456,11 +457,10 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement"
-                    android:layout_centerVertical="true" />
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ico_add_statement" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -468,10 +468,8 @@
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title"
-                    android:gravity="center"
-                    android:paddingRight="20dp"/>
+                    android:gravity="center" />
             </LinearLayout>
-
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 

@@ -7,7 +7,8 @@
     <color name="textColorSecondary">#727272</color>
 
     <color name="list_item_title">#fff</color>
+    <color name="color_summery_item_pressed">#e9e7e7</color>
     <color name="list_background">#303030</color>
-    <color name="list_background_pressed">#992416</color>
+    <color name="list_background_pressed">#357596</color>
     <color name="list_divider">#272727</color>
 </resources>
