@@ -5,7 +5,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="7dp"
         android:background="@color/colorPrimary"
         android:layout_height="wrap_content">
         <TextView
@@ -14,17 +14,17 @@
             android:gravity="center"
             android:textColor="#fff"
             android:singleLine="true"
-            android:textSize="30dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_current_balance"
             android:layout_width="match_parent"
             android:text="123.00"
-            android:layout_marginTop="5dp"
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:textSize="40dp"
+            android:textSize="36dp"
+            android:singleLine="true"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
@@ -34,7 +34,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        android:background="@drawable/list_selector">
+        android:background="@drawable/nav_list_selector">
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        android:background="@drawable/list_selector">
+        android:background="@drawable/nav_list_selector">
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        android:background="@drawable/list_selector">
+        android:background="@drawable/nav_list_selector">
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        android:background="@drawable/list_selector">
+        android:background="@drawable/nav_list_selector">
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
