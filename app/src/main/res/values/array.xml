@@ -7,4 +7,26 @@
         <item>All statement</item>
         <item>Date wise</item>
     </string-array>
+    <string-array name="income_category">
+        <item>Salary</item>
+        <item>Part-time work</item>
+        <item>Personal saving</item>
+        <item>Rents and royalties</item>
+    </string-array>
+    <string-array name="expense_category">
+        <item>Automobile</item>
+        <item>Entertainment</item>
+        <item>Family</item>
+        <item>Food</item>
+        <item>Gasoline</item>
+        <item>Gift</item>
+        <item>Donation</item>
+        <item>Groceries</item>
+        <item>Health</item>
+        <item>Housing</item>
+        <item>Medical</item>
+        <item>Shoping</item>
+        <item>Utilities</item>
+        <item>Others</item>
+    </string-array>
 </resources>

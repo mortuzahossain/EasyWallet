@@ -1,5 +1,6 @@
 package com.appracks.easy_wallet.income;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
 
 public class Income extends AppCompatActivity {
@@ -87,6 +90,9 @@ public class Income extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(Income.this, MainActivity.class));
+        overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+        finish();
     }
 
     @Override

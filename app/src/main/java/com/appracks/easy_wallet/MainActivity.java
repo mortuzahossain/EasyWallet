@@ -13,22 +13,33 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.appracks.easy_wallet.income.Income;
+import com.appracks.easy_wallet.operation.AddStatement;
 
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
+    ImageButton btn_add_statement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        btn_add_statement=(ImageButton)findViewById(R.id.btn_add_statement);
+        btn_add_statement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,AddStatement.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            }
+        });
 
         setSummery();
         setNavMenu();
@@ -115,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(MainActivity.this, Income.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
             }
         });
         LinearLayout ly_expense=(LinearLayout)findViewById(R.id.ly_expense);

@@ -67,6 +67,11 @@
             android:name=".income.Income"
             android:label="@string/title_activity_income" >
         </activity>
+        <activity
+            android:theme="@style/AppTheme2"
+            android:name=".operation.AddStatement"
+            android:label="@string/title_activity_add_statement" >
+        </activity>
     </application>
 
 </manifest>

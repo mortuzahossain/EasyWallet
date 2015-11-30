@@ -190,6 +190,7 @@
                         android:textColor="#000"
                         android:layout_height="wrap_content" />
                     <ImageButton
+                        android:id="@+id/btn_add_statement"
                         android:layout_width="40dp"
                         android:background="@drawable/ico_add_statement"
                         android:layout_height="40dp" />
