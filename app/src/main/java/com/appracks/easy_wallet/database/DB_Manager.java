@@ -2,6 +2,7 @@ package com.appracks.easy_wallet.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -13,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 /**
  * Created by HABIB on 12/9/2015.
@@ -37,6 +39,102 @@ public class DB_Manager extends SQLiteOpenHelper {
     private static final String DATEORDER_FIELD = "dateorder";
 
     DateOperation dt;
+    public ArrayList<StatementData> getAllStatement(String type){
+        ArrayList<StatementData> list=new ArrayList<StatementData>();
+        Cursor cursor;
+        if(type.equalsIgnoreCase("in")){
+            cursor = this.database.query(INCOME_TABLE, null,null, null, null, null, DATEORDER_FIELD+" DESC");
+        }else{
+            cursor = this.database.query(EXPENSE_TABLE, null,null, null, null, null, DATEORDER_FIELD+" DESC");
+        }
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                int id = cursor.getInt(cursor.getColumnIndex(ID_FIELD));
+                String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
+                String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
+                String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
+                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                StatementData sd=new StatementData(id,date,source_way,description,amount,type);
+                list.add(sd);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
+    public ArrayList<StatementData> getMonthStatement(String month,String year,String type){
+        ArrayList<StatementData> list=new ArrayList<StatementData>();
+        Cursor cursor;
+        if(type.equalsIgnoreCase("in")){
+            cursor = this.database.query(INCOME_TABLE, null,"month=? AND year=?", new String[]{month,year}, null, null, DATEORDER_FIELD+" DESC");
+        }else{
+            cursor = this.database.query(EXPENSE_TABLE, null,"month=? AND year=?", new String[]{month,year}, null, null, DATEORDER_FIELD+" DESC");
+        }
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                int id = cursor.getInt(cursor.getColumnIndex(ID_FIELD));
+                String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
+                String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
+                String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
+                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                StatementData sd=new StatementData(id,date,source_way,description,amount,type);
+                list.add(sd);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
+    public ArrayList<StatementData> getYearStatement(String year,String type){
+        ArrayList<StatementData> list=new ArrayList<StatementData>();
+        Cursor cursor;
+        if(type.equalsIgnoreCase("in")){
+            cursor = this.database.query(INCOME_TABLE, null,"year=?", new String[]{year}, null, null, DATEORDER_FIELD+" DESC");
+        }else{
+            cursor = this.database.query(EXPENSE_TABLE, null,"year=?", new String[]{year}, null, null, DATEORDER_FIELD+" DESC");
+        }
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                int id = cursor.getInt(cursor.getColumnIndex(ID_FIELD));
+                String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
+                String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
+                String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
+                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                StatementData sd=new StatementData(id,date,source_way,description,amount,type);
+                list.add(sd);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
+    public ArrayList<StatementData> getBetweenDateStatement(String do_from,String do_to,String type){
+        ArrayList<StatementData> list=new ArrayList<StatementData>();
+        Cursor cursor;
+        if(type.equalsIgnoreCase("in")){
+            cursor = this.database.query(INCOME_TABLE, null,DATEORDER_FIELD+" BETWEEN ? AND ?", new String[]{do_from,do_to}, null, null, DATEORDER_FIELD+" DESC");
+        }else{
+            cursor = this.database.query(EXPENSE_TABLE, null,DATEORDER_FIELD+" BETWEEN ? AND ?", new String[]{do_from,do_to}, null, null, DATEORDER_FIELD+" DESC");
+        }
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                int id = cursor.getInt(cursor.getColumnIndex(ID_FIELD));
+                String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
+                String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
+                String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
+                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                StatementData sd=new StatementData(id,date,source_way,description,amount,type);
+                list.add(sd);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
     public boolean addStatement(StatementData sd){
         dt=new DateOperation();
         ContentValues values=new ContentValues();
@@ -48,13 +146,16 @@ public class DB_Manager extends SQLiteOpenHelper {
         values.put(MONTH_FIELD,dt.getMonth(sd.getDate()));
         values.put(YEAR_FIELD,dt.getYear(sd.getDate()));
         values.put(DATEORDER_FIELD, dt.getDateOrder(sd.getDate()));
+        long inserted;
         if(sd.getType().equalsIgnoreCase("in")){
-            this.database.insert(INCOME_TABLE,null,values);
+            inserted=this.database.insert(INCOME_TABLE,null,values);
         }else{
-            this.database.insert(EXPENSE_TABLE,null,values);
+            inserted=this.database.insert(EXPENSE_TABLE,null,values);
         }
-
-        return true;
+        if(inserted>0){
+            return true;
+        }
+        return false;
     }
 
     private DB_Manager(Context context) {

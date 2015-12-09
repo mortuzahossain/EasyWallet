@@ -25,26 +25,25 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="#aeaeae"
-                android:layout_height="wrap_content"
-                android:focusable="true">
+                android:layout_height="wrap_content">
                 <RadioButton
                     android:layout_weight="1"
                     android:id="@+id/rb_income"
                     android:layout_width="wrap_content"
                     android:text="Income"
-                    android:background="#09ff9e"
+                    android:background="#18d69c"
                     android:checked="true"
-                    android:padding="5dp"
-                    android:textSize="30dp"
+                    android:padding="4dp"
+                    android:textSize="24dp"
                     android:layout_height="wrap_content" />
                 <RadioButton
                     android:layout_weight="1"
                     android:id="@+id/rb_expense"
                     android:layout_width="wrap_content"
                     android:text="Expense"
-                    android:background="#971c11"
-                    android:padding="5dp"
-                    android:textSize="30dp"
+                    android:background="#a21f14"
+                    android:padding="4dp"
+                    android:textSize="24dp"
                     android:layout_height="wrap_content" />
             </RadioGroup>
             <LinearLayout
@@ -109,13 +108,26 @@
                     <requestFocus />
                 </android.support.design.widget.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_save"
-                    android:layout_width="150dp"
-                    android:text="Save"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:layout_marginTop="10dp"
-                    android:textColor="#000"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn_save"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="Save &amp; back"
+                        android:textColor="#000"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/btn_save_and_new"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="Save &amp; new"
+                        android:textColor="#000"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,AddStatement.class));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
             }
         });
 

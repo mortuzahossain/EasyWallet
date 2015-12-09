@@ -2,6 +2,8 @@ package com.appracks.easy_wallet.operation;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,7 +24,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
+import com.appracks.easy_wallet.data_object.StatementData;
+import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 
 import java.util.Calendar;
@@ -38,10 +45,13 @@ public class AddStatement extends AppCompatActivity {
     private TextView tv_date;
     private int year, month, day;
     private Calendar calendar;
+    DB_Manager db_manager;
+    private String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_statement);
+        db_manager=DB_Manager.getInstance(this);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         tv_date=(TextView)findViewById(R.id.tv_date);
@@ -54,6 +64,7 @@ public class AddStatement extends AppCompatActivity {
                 setSpinnerCat(checkedId);
             }
         });
+        type="in";
         setInputLayout();
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -65,14 +76,16 @@ public class AddStatement extends AppCompatActivity {
 
     private void setSpinnerCat(int id){
         if(id==R.id.rb_income){
+            type="in";
             spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.income_category)));
         }else{
+            type="ex";
             spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.expense_category)));
         }
     }
     private void setInputLayout(){
         spn_in_ex_cat=(Spinner)findViewById(R.id.spn_in_ex_cat);
-        spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.income_category)));
+        spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.income_category)));
         inputLayoutDescription = (TextInputLayout) findViewById(R.id.input_layout_description);
         inputLayoutAmount = (TextInputLayout) findViewById(R.id.input_layout_amount);
         et_description = (EditText) findViewById(R.id.et_description);
@@ -109,8 +122,13 @@ public class AddStatement extends AppCompatActivity {
                 if (!validateAmount()) {
                     return;
                 }
-
-                Toast.makeText(getApplicationContext(),new DateOperation().getDateOrder(tv_date.getText().toString()),Toast.LENGTH_LONG).show();
+                StatementData sd=new StatementData(tv_date.getText().toString(),spn_in_ex_cat.getSelectedItem().toString(),et_description.getText().toString(),Double.valueOf(et_amount.getText().toString()),type);
+                if(db_manager.addStatement(sd)){
+                    Toast.makeText(getApplicationContext(),"Statement added",Toast.LENGTH_LONG).show();
+                    onBackPressed();
+                }else{
+                    Snackbar.make(v,"Error! not added",Snackbar.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -140,6 +158,15 @@ public class AddStatement extends AppCompatActivity {
 
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(AddStatement.this,MainActivity.class));
+        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_add_statement, menu);

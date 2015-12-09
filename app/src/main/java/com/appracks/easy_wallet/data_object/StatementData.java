@@ -4,6 +4,7 @@ package com.appracks.easy_wallet.data_object;
  * Created by HABIB on 12/9/2015.
  */
 public class StatementData {
+    private int id;
     private String date;
     private String sourceWay;
     private String description;
@@ -17,7 +18,17 @@ public class StatementData {
         this.amount = amount;
         this.type=type;
     }
-
+    public StatementData(int id,String date, String sourceWay, String description, double amount, String type) {
+        this.id=id;
+        this.date = date;
+        this.sourceWay = sourceWay;
+        this.description = description;
+        this.amount = amount;
+        this.type=type;
+    }
+    public int getId() {
+        return id;
+    }
     public String getType() {
         return type;
     }

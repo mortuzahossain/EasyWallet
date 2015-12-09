@@ -11,7 +11,21 @@ public class DateOperation {
 
     GregorianCalendar gc;
 
-
+    public String getDateFromRaw(int year,int month,int day){
+        String d;
+        String m;
+        if (day < 10) {
+            d = "0" + String.valueOf(day);
+        } else {
+            d = String.valueOf(day);
+        }
+        if (month < 10) {
+            m = "0" + String.valueOf(month);
+        } else {
+            m = String.valueOf(month);
+        }
+        return d+"-"+m+"-"+String.valueOf(year);
+    }
     public String getCurrentYear() {
         gc = new GregorianCalendar();
         int year = gc.get(Calendar.YEAR);
@@ -337,9 +351,7 @@ public class DateOperation {
         } else {
             m = String.valueOf(month);
         }
-
-        long date = Long.valueOf(String.valueOf(year) + m + d);
-        return String.valueOf(date);
+        return d+"-"+m+"-"+String.valueOf(year);
     }
 }
 
