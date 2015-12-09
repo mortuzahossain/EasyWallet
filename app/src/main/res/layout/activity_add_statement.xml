@@ -25,20 +25,25 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="#aeaeae"
-                android:padding="5dp"
                 android:layout_height="wrap_content"
                 android:focusable="true">
                 <RadioButton
+                    android:layout_weight="1"
                     android:id="@+id/rb_income"
                     android:layout_width="wrap_content"
-                    android:text=" Income"
+                    android:text="Income"
+                    android:background="#09ff9e"
                     android:checked="true"
+                    android:padding="5dp"
                     android:textSize="30dp"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:layout_weight="1"
                     android:id="@+id/rb_expense"
                     android:layout_width="wrap_content"
-                    android:text=" Expense"
+                    android:text="Expense"
+                    android:background="#971c11"
+                    android:padding="5dp"
                     android:textSize="30dp"
                     android:layout_height="wrap_content" />
             </RadioGroup>
@@ -103,8 +108,6 @@
                             android:hint="Amount *" />
                     <requestFocus />
                 </android.support.design.widget.TextInputLayout>
-
-
 
                 <Button
                     android:id="@+id/btn_save"

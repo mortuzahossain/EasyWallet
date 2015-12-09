@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.appracks.easy_wallet.R;
+import com.appracks.easy_wallet.dateOperation.DateOperation;
+
 import java.util.Calendar;
 
 public class AddStatement extends AppCompatActivity {
@@ -107,12 +109,25 @@ public class AddStatement extends AppCompatActivity {
                 if (!validateAmount()) {
                     return;
                 }
-                Toast.makeText(getApplicationContext(),"OK",Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(),new DateOperation().getDateOrder(tv_date.getText().toString()),Toast.LENGTH_LONG).show();
             }
         });
     }
     private void setDate(int year,int month, int day){
-        tv_date.setText(day+"-"+month+"-"+year);
+        String d;
+        String m;
+        if (day < 10) {
+            d = "0" + String.valueOf(day);
+        } else {
+            d = String.valueOf(day);
+        }
+        if (month < 10) {
+            m = "0" + String.valueOf(month);
+        } else {
+            m = String.valueOf(month);
+        }
+        tv_date.setText(d+"-"+m+"-"+String.valueOf(year));
     }
     private boolean validateAmount() {
         if (et_amount.getText().toString().trim().isEmpty()) {
