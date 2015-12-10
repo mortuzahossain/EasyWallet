@@ -30,6 +30,8 @@ import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
+import com.appracks.easy_wallet.expense.Expense;
+import com.appracks.easy_wallet.income.Income;
 
 import java.util.Calendar;
 
@@ -38,7 +40,7 @@ public class AddStatement extends AppCompatActivity {
     private TextInputLayout inputLayoutDescription,inputLayoutAmount;
     private EditText et_description,et_amount;
     private ImageButton btn_date_picker;
-    private Button btn_save;
+    private Button btn_save,btn_save_and_new;
     private Spinner spn_in_ex_cat;
     private RadioGroup rg_in_ex_type;
     private RadioButton rb_income,rb_expense;
@@ -46,7 +48,7 @@ public class AddStatement extends AppCompatActivity {
     private int year, month, day;
     private Calendar calendar;
     DB_Manager db_manager;
-    private String type;
+    private String type,from;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,13 +126,36 @@ public class AddStatement extends AppCompatActivity {
                 }
                 StatementData sd=new StatementData(tv_date.getText().toString(),spn_in_ex_cat.getSelectedItem().toString(),et_description.getText().toString(),Double.valueOf(et_amount.getText().toString()),type);
                 if(db_manager.addStatement(sd)){
-                    Toast.makeText(getApplicationContext(),"Statement added",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Statement saved",Toast.LENGTH_LONG).show();
                     onBackPressed();
                 }else{
-                    Snackbar.make(v,"Error! not added",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(v,"Error! not saved",Snackbar.LENGTH_LONG).show();
                 }
             }
         });
+        btn_save_and_new = (Button) findViewById(R.id.btn_save_and_new);
+        btn_save_and_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!validateAmount()) {
+                    return;
+                }
+                StatementData sd=new StatementData(tv_date.getText().toString(),spn_in_ex_cat.getSelectedItem().toString(),et_description.getText().toString(),Double.valueOf(et_amount.getText().toString()),type);
+                if(db_manager.addStatement(sd)){
+                    Toast.makeText(getApplicationContext(),"Statement saved",Toast.LENGTH_LONG).show();
+                    et_description.setText("");
+                    et_amount.setText("");
+                    inputLayoutAmount.setErrorEnabled(false);
+                }else{
+                    Snackbar.make(v,"Error! not saved",Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+        from=getIntent().getStringExtra("from");
+        if(from.equalsIgnoreCase("ex")){
+            setSpinnerCat(R.id.rb_expense);
+            rg_in_ex_type.check(R.id.rb_expense);
+        }
     }
     private void setDate(int year,int month, int day){
         String d;
@@ -162,7 +187,13 @@ public class AddStatement extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(AddStatement.this,MainActivity.class));
+        if(from.equalsIgnoreCase("in")){
+            startActivity(new Intent(AddStatement.this,Income.class).putExtra("cat_type",0));
+        }else if(from.equalsIgnoreCase("ex")){
+            startActivity(new Intent(AddStatement.this,Expense.class).putExtra("cat_type",0));
+        }else {
+            startActivity(new Intent(AddStatement.this,MainActivity.class));
+        }
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();
     }

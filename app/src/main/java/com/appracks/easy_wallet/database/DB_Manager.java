@@ -5,10 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,8 +35,103 @@ public class DB_Manager extends SQLiteOpenHelper {
     private static final String MONTH_FIELD = "month";
     private static final String YEAR_FIELD = "year";
     private static final String DATEORDER_FIELD = "dateorder";
-
     DateOperation dt;
+
+    public double[] getSummery(){
+        double[] summery=new double[9];
+        Double amount;
+        Cursor cursor = this.database.query(INCOME_TABLE, new String[]{"SUM(amount) as in_week"},DATEORDER_FIELD+" BETWEEN ? AND ?", new String[]{dt.getDateOrder(dt.getCurrentDateN7()),dt.getCurrentDateOrder()}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("in_week"));
+            summery[0]=round(amount, 2);
+        }else{
+            summery[0]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(EXPENSE_TABLE, new String[]{"SUM(amount) as ex_week"},DATEORDER_FIELD+" BETWEEN ? AND ?", new String[]{dt.getDateOrder(dt.getCurrentDateN7()),dt.getCurrentDateOrder()}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("ex_week"));
+            summery[4]=round(amount,2);
+        }else{
+            summery[4]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(INCOME_TABLE, new String[]{"SUM(amount) as in_month"},"month=? AND year=?", new String[]{dt.getCurrentMonth(),dt.getCurrentYear()}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("in_month"));
+            summery[1]=round(amount,2);
+        }else{
+            summery[1]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(EXPENSE_TABLE, new String[]{"SUM(amount) as ex_month"},"month=? AND year=?", new String[]{dt.getCurrentMonth(),dt.getCurrentYear()}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("ex_month"));
+            summery[5]=round(amount,2);
+        }else{
+            summery[5]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(INCOME_TABLE, new String[]{"SUM(amount) as in_year"},"year=?", new String[]{dt.getCurrentYear()}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("in_year"));
+            summery[2]=round(amount,2);
+        }else{
+            summery[2]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(EXPENSE_TABLE, new String[]{"SUM(amount) as ex_year"},"year=?", new String[]{dt.getCurrentYear()}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("ex_year"));
+            summery[6]=round(amount,2);
+        }else{
+            summery[6]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(INCOME_TABLE, new String[]{"SUM(amount) as in_total"},null, null, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("in_total"));
+            summery[3]=round(amount,2);
+        }else{
+            summery[3]=0.0;
+        }
+        cursor.close();
+        cursor = this.database.query(EXPENSE_TABLE, new String[]{"SUM(amount) as ex_total"},null, null, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            amount=cursor.getDouble(cursor.getColumnIndex("ex_total"));
+            summery[7]=round(amount,2);
+        }else{
+            summery[7]=0.0;
+        }
+        cursor.close();
+        summery[8]=round(summery[3] - summery[7],2);
+
+        return summery;
+    }
+    public double getBetweenDateAmount(String dateFrom,String dateTo,String type){
+        Cursor cursor;
+        if(type.equalsIgnoreCase("in")) {
+            cursor = this.database.query(INCOME_TABLE, new String[]{"SUM(amount) as bda"}, DATEORDER_FIELD + " BETWEEN ? AND ?", new String[]{dateFrom, dateTo}, null, null, null);
+        }else{
+            cursor = this.database.query(EXPENSE_TABLE, new String[]{"SUM(amount) as bda"}, DATEORDER_FIELD + " BETWEEN ? AND ?", new String[]{dateFrom, dateTo}, null, null, null);
+        }
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            double amount= round(cursor.getDouble(cursor.getColumnIndex("bda")), 2);
+            cursor.close();
+            return amount;
+        }
+        cursor.close();
+        return 0.0;
+    }
     public ArrayList<StatementData> getAllStatement(String type){
         ArrayList<StatementData> list=new ArrayList<StatementData>();
         Cursor cursor;
@@ -54,7 +147,7 @@ public class DB_Manager extends SQLiteOpenHelper {
                 String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
                 String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
                 String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
-                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                double amount = round(cursor.getDouble(cursor.getColumnIndex(AMOUNT_FIELD)),2);
                 StatementData sd=new StatementData(id,date,source_way,description,amount,type);
                 list.add(sd);
                 cursor.moveToNext();
@@ -78,7 +171,7 @@ public class DB_Manager extends SQLiteOpenHelper {
                 String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
                 String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
                 String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
-                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                double amount = round(cursor.getDouble(cursor.getColumnIndex(AMOUNT_FIELD)),2);
                 StatementData sd=new StatementData(id,date,source_way,description,amount,type);
                 list.add(sd);
                 cursor.moveToNext();
@@ -102,7 +195,7 @@ public class DB_Manager extends SQLiteOpenHelper {
                 String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
                 String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
                 String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
-                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                double amount = round(cursor.getDouble(cursor.getColumnIndex(AMOUNT_FIELD)),2);
                 StatementData sd=new StatementData(id,date,source_way,description,amount,type);
                 list.add(sd);
                 cursor.moveToNext();
@@ -126,7 +219,7 @@ public class DB_Manager extends SQLiteOpenHelper {
                 String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
                 String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
                 String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
-                double amount = Double.valueOf(cursor.getString(cursor.getColumnIndex(AMOUNT_FIELD)));
+                double amount = round(cursor.getDouble(cursor.getColumnIndex(AMOUNT_FIELD)),2);
                 StatementData sd=new StatementData(id,date,source_way,description,amount,type);
                 list.add(sd);
                 cursor.moveToNext();
@@ -136,7 +229,6 @@ public class DB_Manager extends SQLiteOpenHelper {
         return list;
     }
     public boolean addStatement(StatementData sd){
-        dt=new DateOperation();
         ContentValues values=new ContentValues();
         values.put(DATE_FIELD, sd.getDate());
         values.put(SOURCE_WAY_FIELD,sd.getSourceWay());
@@ -148,9 +240,9 @@ public class DB_Manager extends SQLiteOpenHelper {
         values.put(DATEORDER_FIELD, dt.getDateOrder(sd.getDate()));
         long inserted;
         if(sd.getType().equalsIgnoreCase("in")){
-            inserted=this.database.insert(INCOME_TABLE,null,values);
+            inserted=this.database.insert(INCOME_TABLE, null, values);
         }else{
-            inserted=this.database.insert(EXPENSE_TABLE,null,values);
+            inserted=this.database.insert(EXPENSE_TABLE, null, values);
         }
         if(inserted>0){
             return true;
@@ -163,6 +255,7 @@ public class DB_Manager extends SQLiteOpenHelper {
         this.context = context;
         DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
         this.database = openDatabase();
+        dt=new DateOperation();
     }
 
     public static DB_Manager getInstance(Context context) {
@@ -221,5 +314,12 @@ public class DB_Manager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+    private double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

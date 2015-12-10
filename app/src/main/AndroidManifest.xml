@@ -68,9 +68,13 @@
             android:label="@string/title_activity_income" >
         </activity>
         <activity
-            android:theme="@style/AppTheme2"
             android:name=".operation.AddStatement"
-            android:label="@string/title_activity_add_statement" >
+            android:label="@string/title_activity_add_statement"
+            android:theme="@style/AppTheme2" >
+        </activity>
+        <activity
+            android:name=".expense.Expense"
+            android:label="@string/title_activity_expense" >
         </activity>
     </application>
 

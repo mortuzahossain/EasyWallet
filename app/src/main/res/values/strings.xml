@@ -9,4 +9,5 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_income">Income | </string>
     <string name="title_activity_add_statement">Add Statement</string>
+    <string name="title_activity_expense">Expense</string>
 </resources>

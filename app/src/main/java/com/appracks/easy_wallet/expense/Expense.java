@@ -1,4 +1,4 @@
-package com.appracks.easy_wallet.income;
+package com.appracks.easy_wallet.expense;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -26,12 +26,12 @@ import com.appracks.easy_wallet.adapter.StatementViewAdapter;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
-import com.appracks.easy_wallet.expense.Expense;
+import com.appracks.easy_wallet.income.Income;
 import com.appracks.easy_wallet.operation.AddStatement;
 
 import java.util.ArrayList;
 
-public class Income extends AppCompatActivity {
+public class Expense extends AppCompatActivity {
 
     private ListView lv_in_statement;
     StatementViewAdapter statementViewAdapter;
@@ -49,7 +49,7 @@ public class Income extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+        setContentView(R.layout.activity_expense);
         toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
@@ -62,7 +62,7 @@ public class Income extends AppCompatActivity {
         btn_add_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Income.this, AddStatement.class).putExtra("from","in"));
+                startActivity(new Intent(Expense.this, AddStatement.class).putExtra("from","ex"));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
@@ -90,33 +90,33 @@ public class Income extends AppCompatActivity {
     private void setStatementList(int cat){
         double[] summery=dbManager.getSummery();
         if(cat==0){//0 for weekly
-            list=dbManager.getBetweenDateStatement(dt.getDateOrder(dt.getCurrentDateN7()),dt.getCurrentDateOrder(),"in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getBetweenDateStatement(dt.getDateOrder(dt.getCurrentDateN7()),dt.getCurrentDateOrder(),"ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  Current week income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[0]));
+            tv_category.setText(":::  Current week expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[4]));
         }else if(cat==1){//1 for monthly
-            list=dbManager.getMonthStatement(dt.getCurrentMonth(), dt.getCurrentYear(), "in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getMonthStatement(dt.getCurrentMonth(), dt.getCurrentYear(), "ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  Current month income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[1]));
+            tv_category.setText(":::  Current month expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[5]));
         }else if(cat==2){//2 for yearly
-            list=dbManager.getYearStatement(dt.getCurrentYear(),"in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getYearStatement(dt.getCurrentYear(),"ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  Current year income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[2]));
+            tv_category.setText(":::  Current year expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[6]));
         }else if(cat==3){//3 for all
-            list=dbManager.getAllStatement("in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getAllStatement("ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  All income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[3]));
+            tv_category.setText(":::  All expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[7]));
         }else if(cat==4){//4 for date wise
             //noinspection deprecation
             showDialog(1);
@@ -147,7 +147,9 @@ public class Income extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                Toast.makeText(getApplicationContext(), "You are here", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Expense.this, Income.class).putExtra("cat_type", 0));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
             }
         });
         LinearLayout ly_expense=(LinearLayout)findViewById(R.id.ly_expense);
@@ -155,9 +157,7 @@ public class Income extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                startActivity(new Intent(Income.this, Expense.class).putExtra("cat_type", 0));
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-                finish();
+                Toast.makeText(getApplicationContext(),"You are here",Toast.LENGTH_LONG).show();
             }
         });
         LinearLayout ly_graph=(LinearLayout)findViewById(R.id.ly_graph);
@@ -173,17 +173,17 @@ public class Income extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(Income.this, MainActivity.class));
+        startActivity(new Intent(Expense.this, MainActivity.class));
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();
     }
     private void setBetweenStatement(){
-        list=dbManager.getBetweenDateStatement(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"in");
-        statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+        list=dbManager.getBetweenDateStatement(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"ex");
+        statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
         statementViewAdapter.notifyDataSetChanged();
         lv_in_statement.setAdapter(statementViewAdapter);
-        tv_category.setText("::: Income from " + firstDate + " to " + secondDate + " :::");
-        tv_filter_balance.setText(String.valueOf(dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"in")));
+        tv_category.setText("::: Expense from " + firstDate + " to " + secondDate + " :::");
+        tv_filter_balance.setText(String.valueOf(dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"ex")));
     }
 
     @SuppressWarnings("deprecation")
