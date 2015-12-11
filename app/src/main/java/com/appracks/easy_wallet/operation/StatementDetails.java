@@ -3,11 +3,10 @@ package com.appracks.easy_wallet.operation;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.appracks.easy_wallet.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.expense.Expense;
@@ -23,6 +22,11 @@ public class StatementDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statement_details);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        sd=(StatementData)getIntent().getSerializableExtra("statementObject");
+        from=getIntent().getIntExtra("from",0);
+
         btn_back=(Button)findViewById(R.id.btn_back);
         btn_delete=(Button)findViewById(R.id.btn_delete);
         btn_update=(Button)findViewById(R.id.btn_update);
@@ -49,16 +53,17 @@ public class StatementDetails extends AppCompatActivity {
 
             }
         });
-        sd=(StatementData)getIntent().getSerializableExtra("statementObject");
-        from=getIntent().getIntExtra("from",0);
+
         tv_date.setText(sd.getDate());
         tv_source_way.setText(sd.getSourceWay());
         tv_description.setText(sd.getDescription());
         tv_amount.setText(String.valueOf(sd.getAmount()));
         if(from==0){
-            tv_source_way_text.setText("Income source");
+            tv_source_way_text.setText("Income source:");
+            getSupportActionBar().setTitle("Income details");
         }else{
-            tv_source_way_text.setText("Expense way");
+            tv_source_way_text.setText("Expense way:");
+            getSupportActionBar().setTitle("Expense details");
         }
     }
 

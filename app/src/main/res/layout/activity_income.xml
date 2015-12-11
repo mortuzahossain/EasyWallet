@@ -169,7 +169,7 @@
                     android:layout_marginLeft="12dp"
                     android:contentDescription="@string/app_name"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_summary" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -193,7 +193,7 @@
                     android:layout_marginLeft="12dp"
                     android:contentDescription="@string/app_name"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_income" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -217,7 +217,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_expense" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -241,7 +241,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_graph" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

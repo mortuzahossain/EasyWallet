@@ -38,7 +38,7 @@
                         android:textColor="#FFF"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Income summery" />
+                        android:text="Income summary" />
                     <LinearLayout
                         android:id="@+id/ly_current_week_in"
                         android:layout_width="match_parent"
@@ -214,7 +214,7 @@
                         android:textColor="#FFF"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Expense summery" />
+                        android:text="Expense summary" />
                     <LinearLayout
                         android:id="@+id/ly_current_week_ex"
                         android:layout_width="match_parent"
@@ -398,11 +398,11 @@
                     android:layout_marginLeft="12dp"
                     android:contentDescription="@string/app_name"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_summary" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Summery"
+                    android:text="Summary"
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title"
@@ -422,7 +422,7 @@
                     android:layout_marginLeft="12dp"
                     android:contentDescription="@string/app_name"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_income" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -446,7 +446,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_expense" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -470,7 +470,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ico_add_statement" />
+                    android:src="@drawable/ic_graph" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
