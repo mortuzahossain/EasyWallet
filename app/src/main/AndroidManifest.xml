@@ -76,6 +76,14 @@
             android:name=".expense.Expense"
             android:label="@string/title_activity_expense" >
         </activity>
+        <activity
+            android:name=".operation.UpdateStatement"
+            android:label="@string/title_activity_update_statement" >
+        </activity>
+        <activity
+            android:name=".operation.StatementDetails"
+            android:label="@string/title_activity_statement_details" >
+        </activity>
     </application>
 
 </manifest>

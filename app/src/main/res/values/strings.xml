@@ -10,4 +10,6 @@
     <string name="title_activity_income">Income | </string>
     <string name="title_activity_add_statement">Add Statement</string>
     <string name="title_activity_expense">Expense</string>
+    <string name="title_activity_update_statement">Update statement</string>
+    <string name="title_activity_statement_details">Details</string>
 </resources>

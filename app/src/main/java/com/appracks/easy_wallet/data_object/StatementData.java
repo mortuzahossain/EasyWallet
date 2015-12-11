@@ -1,9 +1,11 @@
 package com.appracks.easy_wallet.data_object;
 
+import java.io.Serializable;
+
 /**
  * Created by HABIB on 12/9/2015.
  */
-public class StatementData {
+public class StatementData implements Serializable{
     private int id;
     private String date;
     private String sourceWay;

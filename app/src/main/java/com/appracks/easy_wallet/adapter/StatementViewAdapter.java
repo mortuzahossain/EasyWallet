@@ -2,6 +2,7 @@ package com.appracks.easy_wallet.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.appracks.easy_wallet.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
+import com.appracks.easy_wallet.expense.Expense;
+import com.appracks.easy_wallet.income.Income;
+import com.appracks.easy_wallet.operation.StatementDetails;
+
 import java.util.ArrayList;
 
 public class StatementViewAdapter extends BaseAdapter{
@@ -20,10 +27,17 @@ public class StatementViewAdapter extends BaseAdapter{
     public static final int incomeAdapter=0;
     public static final int expenseAdapter=1;
     private int type;
+    CustomInterfaceAdapter cia;
+
     public StatementViewAdapter(Activity activity, ArrayList<StatementData> list, int adapterType) {
         this.context=activity;
         this.list=list;
         this.type=adapterType;
+        if(type==incomeAdapter){
+            cia=(Income)activity;
+        }else{
+            cia=(Expense)activity;
+        }
     }
 
     @Override
@@ -59,7 +73,8 @@ public class StatementViewAdapter extends BaseAdapter{
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v,sd.getDescription()+" from "+String.valueOf(type),Snackbar.LENGTH_LONG).show();
+                context.startActivity(new Intent(context, StatementDetails.class).putExtra("from",type).putExtra("statementObject",sd));
+                cia.adapterClick();
             }
         });
         return convertView;

@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.appracks.easy_wallet.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.adapter.StatementViewAdapter;
@@ -31,7 +33,7 @@ import com.appracks.easy_wallet.operation.AddStatement;
 
 import java.util.ArrayList;
 
-public class Income extends AppCompatActivity {
+public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
 
     private ListView lv_in_statement;
     StatementViewAdapter statementViewAdapter;
@@ -211,4 +213,10 @@ public class Income extends AppCompatActivity {
             setBetweenStatement();
         }
     };
+
+    @Override
+    public void adapterClick() {
+        overridePendingTransition(R.anim.push_up_in,R.anim.style_static);
+        finish();
+    }
 }
