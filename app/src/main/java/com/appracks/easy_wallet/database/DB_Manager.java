@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import java.io.File;
@@ -36,6 +38,41 @@ public class DB_Manager extends SQLiteOpenHelper {
     private static final String YEAR_FIELD = "year";
     private static final String DATEORDER_FIELD = "dateorder";
     DateOperation dt;
+
+    public boolean updateStatement(StatementData sd,int from){
+        long updated;
+        ContentValues values = new ContentValues();
+        values.put(DATE_FIELD, sd.getDate());
+        values.put(SOURCE_WAY_FIELD,sd.getSourceWay());
+        values.put(DESCRIPTION_FIELD,sd.getDescription());
+        values.put(AMOUNT_FIELD,sd.getAmount());
+        values.put(DAY_FIELD,dt.getDay(sd.getDate()));
+        values.put(MONTH_FIELD,dt.getMonth(sd.getDate()));
+        values.put(YEAR_FIELD,dt.getYear(sd.getDate()));
+        values.put(DATEORDER_FIELD, dt.getDateOrder(sd.getDate()));
+        if(from==0){
+            updated=this.database.update(INCOME_TABLE, values, ID_FIELD + "=?",new String[]{String.valueOf(sd.getId())});
+        }else{
+            updated=this.database.update(EXPENSE_TABLE, values, ID_FIELD + "=?", new String[]{String.valueOf(sd.getId())});
+        }
+        if(updated>0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteStatement(String id,int from){
+        long deleted;
+        if(from==0){
+            deleted=this.database.delete(INCOME_TABLE,ID_FIELD + "=?",new String[]{id});
+        }else{
+            deleted=this.database.delete(EXPENSE_TABLE,ID_FIELD + "=?",new String[]{id});
+        }
+        if(deleted>0){
+            return true;
+        }
+        return false;
+    }
 
     public double[] getSummery(){
         double[] summery=new double[9];

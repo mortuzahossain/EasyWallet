@@ -140,7 +140,7 @@
                 android:id="@+id/btn_update"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Update"
+                android:text="Edit"
                 android:textColor="#000"
                 android:layout_height="wrap_content" />
         </LinearLayout>

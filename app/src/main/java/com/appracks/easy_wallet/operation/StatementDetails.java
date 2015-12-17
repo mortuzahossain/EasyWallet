@@ -1,5 +1,7 @@
 package com.appracks.easy_wallet.operation;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
+import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.income.Income;
 
@@ -17,6 +21,7 @@ public class StatementDetails extends AppCompatActivity {
     private TextView tv_date,tv_source_way_text,tv_source_way,tv_description,tv_amount;
     private int from;
     StatementData sd;
+    DB_Manager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,7 @@ public class StatementDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         sd=(StatementData)getIntent().getSerializableExtra("statementObject");
         from=getIntent().getIntExtra("from",0);
-
+        dbManager=DB_Manager.getInstance(this);
         btn_back=(Button)findViewById(R.id.btn_back);
         btn_delete=(Button)findViewById(R.id.btn_delete);
         btn_update=(Button)findViewById(R.id.btn_update);
@@ -44,13 +49,29 @@ public class StatementDetails extends AppCompatActivity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(StatementDetails.this);
+                alertDialog.setTitle("Are you want to delete?");
+                alertDialog.setIcon(R.mipmap.ic_launcher);
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (dbManager.deleteStatement(String.valueOf(sd.getId()), from)) {
+                            Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_LONG).show();
+                            onBackPressed();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "ERROR !", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                alertDialog.setNegativeButton("No", null);
+                alertDialog.show();
             }
         });
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(StatementDetails.this,UpdateStatement.class).putExtra("from",from).putExtra("statementObject",sd));
+                overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+                finish();
             }
         });
 
