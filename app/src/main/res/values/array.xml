@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <integer-array name="color_list_pie">
+        <item>@color/c_g</item>
+        <item>@color/c_r</item>
+    </integer-array>
     <string-array name="spinner_filter_category">
         <item>Current week</item>
         <item>Current month</item>

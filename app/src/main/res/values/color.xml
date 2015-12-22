@@ -13,4 +13,7 @@
     <color name="list_background">#303030</color>
     <color name="list_background_pressed">#357596</color>
     <color name="list_divider">#272727</color>
+
+    <color name="c_r">#a21f14</color>
+    <color name="c_g">#058111</color>
 </resources>

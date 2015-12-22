@@ -15,5 +15,11 @@
         <item name="android:textColorPrimary">@color/textColorPrimary2</item>
         <item name="android:textColorSecondary">@color/textColorSecondary2</item>
     </style>
+    <style name="AppTheme3" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+    </style>
 
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/list_item_title</item>
+    </style>
 </resources>
