@@ -4,24 +4,26 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
+import com.appracks.easy_wallet.expense.Expense;
+import com.appracks.easy_wallet.income.Income;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -30,28 +32,31 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
 import java.util.ArrayList;
 
 public class Graph extends AppCompatActivity {
-
+    DrawerLayout myDrawer;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     private Spinner spn_graph_type,spn_filter_category;
     DB_Manager dbManager;
     private PieChart pieChart;
     DateOperation dt;
     private String firstDate,secondDate;
-    private TextView tv_message;
+    private TextView tv_message,tv_current_balance;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
+        toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
         dt=new DateOperation();
         spn_graph_type=(Spinner)findViewById(R.id.spn_graph_type);
         tv_message=(TextView)findViewById(R.id.tv_message);
+        tv_current_balance=(TextView)findViewById(R.id.tv_current_balance);
+        double[] summary=dbManager.getSummery();
+        tv_current_balance.setText(String.valueOf(summary[8]));
         spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
         String[] list=getResources().getStringArray(R.array.spinner_filter_category);
         spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART"}));
@@ -78,6 +83,7 @@ public class Graph extends AppCompatActivity {
 
             }
         });
+        setNavMenu();
     }
     private void setGraph(int type,int cat){
         if(type==0){
@@ -122,7 +128,7 @@ public class Graph extends AppCompatActivity {
         pieChart.setHoleColorTransparent(true);
         pieChart.setHoleRadius(15);
         pieChart.setTransparentCircleRadius(10);
-        pieChart.setDescription("description");
+        pieChart.setDescription("");
         pieChart.setRotationAngle(0);
         pieChart.setRotationEnabled(true);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -150,7 +156,7 @@ public class Graph extends AppCompatActivity {
         pieDataSet.setColors(getResources().getIntArray(R.array.color_list_pie));
         PieData pieData=new PieData(xVals,pieDataSet);
         pieData.setValueFormatter(new PercentFormatter());
-        pieData.setValueTextSize(24f);
+        pieData.setValueTextSize(20f);
         pieData.setValueTextColor(Color.WHITE);
         pieChart.setData(pieData);
         pieChart.highlightValues(null);
@@ -161,9 +167,55 @@ public class Graph extends AppCompatActivity {
         l.setXEntrySpace(5);
         l.setYEntrySpace(7);
     }
+    private void setNavMenu(){
+        myDrawer= (DrawerLayout) findViewById(R.id.myDrawer);
+        actionBarDrawerToggle=new ActionBarDrawerToggle(this, myDrawer,toolbar, R.string.drawer_open, R.string.drawer_close);
+        myDrawer.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        LinearLayout ly_summery=(LinearLayout) findViewById(R.id.ly_summery);
+        ly_summery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(Graph.this, MainActivity.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
+        LinearLayout ly_income=(LinearLayout) findViewById(R.id.ly_income);
+        ly_income.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(Graph.this, Income.class).putExtra("cat_type", 0));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
+        LinearLayout ly_expense=(LinearLayout) findViewById(R.id.ly_expense);
+        ly_expense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(Graph.this, Expense.class).putExtra("cat_type", 0));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
+        LinearLayout ly_graph=(LinearLayout) findViewById(R.id.ly_graph);
+        ly_graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
+                Toast.makeText(getApplicationContext(), "You are here", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        myDrawer.closeDrawer(GravityCompat.START);
         startActivity(new Intent(Graph.this, MainActivity.class));
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();
@@ -190,8 +242,7 @@ public class Graph extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker arg0, int year, int month, int day) {
             secondDate=dt.getDateFromRaw(year, month+1, day);
-            dbManager.getBetweenDateAmount(firstDate,secondDate,"in");
-            setPieGraph((float)dbManager.getBetweenDateAmount(firstDate,secondDate,"in"),(float)dbManager.getBetweenDateAmount(firstDate,secondDate,"ex"),"From "+firstDate+" to "+secondDate);
+            setPieGraph((float) dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate), dt.getDateOrder(secondDate), "in"), (float) dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate), dt.getDateOrder(secondDate), "ex"), "From " + firstDate + " to " + secondDate);
         }
     };
 }

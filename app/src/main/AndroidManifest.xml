@@ -66,7 +66,7 @@
         <activity
             android:name=".income.Income"
             android:label="@string/title_activity_income"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme3" >
         </activity>
         <activity
             android:name=".operation.AddStatement"
@@ -75,7 +75,7 @@
         <activity
             android:name=".expense.Expense"
             android:label="@string/title_activity_expense"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme3" >
         </activity>
         <activity
             android:name=".operation.UpdateStatement"

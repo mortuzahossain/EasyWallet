@@ -29,6 +29,7 @@ import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import com.appracks.easy_wallet.expense.Expense;
+import com.appracks.easy_wallet.graph.Graph;
 import com.appracks.easy_wallet.operation.AddStatement;
 
 import java.util.ArrayList;
@@ -167,7 +168,9 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                Toast.makeText(getApplicationContext(), "ly_graph", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Income.this, Graph.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
             }
         });
     }
