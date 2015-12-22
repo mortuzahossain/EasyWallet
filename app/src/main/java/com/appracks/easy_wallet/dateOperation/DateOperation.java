@@ -4,6 +4,8 @@ package com.appracks.easy_wallet.dateOperation;
  * Created by HABIB on 12/9/2015.
  */
 
+        import java.text.ParseException;
+        import java.text.SimpleDateFormat;
         import java.util.Calendar;
         import java.util.GregorianCalendar;
 
@@ -11,6 +13,17 @@ public class DateOperation {
 
     GregorianCalendar gc;
 
+    public String getNextDate(String cur){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(cur));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.add(Calendar.DATE, 1);
+        return sdf.format(c.getTime());
+    }
     public String getDateFromRaw(int year,int month,int day){
         String d;
         String m;

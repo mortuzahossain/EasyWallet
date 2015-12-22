@@ -123,7 +123,6 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         }else if(cat==4){//4 for date wise
             //noinspection deprecation
             showDialog(1);
-            Toast.makeText(getApplicationContext(), "Not calling again", Toast.LENGTH_SHORT).show();
         }
         tv_nav_balance.setText(String.valueOf(summery[8]));
         if(summery[8]<0){
