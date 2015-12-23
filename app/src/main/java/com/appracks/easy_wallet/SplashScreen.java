@@ -18,13 +18,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         startService(new Intent(this, NotificationService.class));
-        imageView= (ImageView) findViewById(R.id.imageView);
-        orient = getWindowManager().getDefaultDisplay().getRotation(); //land=1 and port=0
-        if (orient == 0) {
-            imageView.setImageResource(R.drawable.common_signin_btn_icon_light);
-        }else{
-            imageView.setImageResource(R.drawable.common_signin_btn_icon_light);
-        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -38,12 +32,5 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
-        orient = getWindowManager().getDefaultDisplay().getRotation();
-        if (orient == 0) {
-            imageView.setImageResource(R.drawable.common_signin_btn_icon_light);
-        }else{
-            imageView.setImageResource(R.drawable.common_signin_btn_icon_light);
-        }
     }
 }
