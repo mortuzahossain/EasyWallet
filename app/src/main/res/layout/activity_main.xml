@@ -38,7 +38,7 @@
                         android:background="#294f7f"
                         android:textColor="#FFF"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Income summary" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -63,15 +63,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Current week:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="CURRENT WEEK" />
                                 <LinearLayout
                                     android:id="@+id/ly_current_week_in"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -105,15 +105,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Current month:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="CURRENT MONTH" />
                                 <LinearLayout
                                     android:id="@+id/ly_current_month_in"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -151,15 +151,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Current year:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="CURRENT YEAR" />
                                 <LinearLayout
                                     android:id="@+id/ly_current_year_in"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -192,15 +192,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Total:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="TOTAL" />
                                 <LinearLayout
                                     android:id="@+id/ly_total_in"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -240,7 +240,7 @@
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Balance" />
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -249,7 +249,7 @@
                             android:background="@drawable/summary_bac_normal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
-                            android:layout_height="70dp">
+                            android:layout_height="60dp">
                             <ImageView
                                 android:layout_width="20dp"
                                 android:src="@drawable/tk_sign"
@@ -279,7 +279,7 @@
                         android:background="#294f7f"
                         android:textColor="#FFF"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Expense summary" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -304,15 +304,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Current week:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="CURRENT WEEK" />
                                 <LinearLayout
                                     android:id="@+id/ly_current_week_ex"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -346,15 +346,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Current month:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="CURRENT MONTH" />
                                 <LinearLayout
                                     android:id="@+id/ly_current_month_ex"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -392,15 +392,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Current year:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="CURRENT YEAR" />
                                 <LinearLayout
                                     android:id="@+id/ly_current_year_ex"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -433,15 +433,15 @@
                                     android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="Total:" />
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="TOTAL" />
                                 <LinearLayout
                                     android:id="@+id/ly_total_ex"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
                                     android:background="@drawable/summary_cat_selector"
-                                    android:layout_height="60dp">
+                                    android:layout_height="50dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
@@ -464,7 +464,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="40dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="45dp"
                     android:background="@drawable/ico_add_statement"
                     android:layout_height="40dp" />
             </RelativeLayout>

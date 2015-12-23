@@ -67,7 +67,7 @@ public class Graph extends AppCompatActivity {
         tv_current_balance.setText(String.valueOf(summary[8]));
         spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
         String[] list=getResources().getStringArray(R.array.spinner_filter_category);
-        spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART"}));
+        spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART: INCOME"}));
         spn_filter_category.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,list));
         spn_graph_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -112,9 +112,9 @@ public class Graph extends AppCompatActivity {
             pieChart.setVisibility(View.VISIBLE);
         }else if(type==1){
             if(cat==0){
-                setBarGraph(dbManager.getDateAndAmountBetweenDate(dt.getCurrentDateN7(),dt.getCurrentDate(),"in"),"OK");
+                setBarGraph(dbManager.getDateAndAmountBetweenDate(dt.getCurrentDateN7(),dt.getCurrentDate(),"in"),"");
             }else if(cat==1){
-
+                setBarGraph(dbManager.getDateAndAmountBetweenDate("01-"+dt.getCurrentMonth()+"-"+dt.getCurrentYear(),dt.getCurrentDate(),"in"),"");
             }else if(cat==2){
 
             }else if(cat==3){

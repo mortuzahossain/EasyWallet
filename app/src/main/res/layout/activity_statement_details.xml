@@ -27,7 +27,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#38a7e59b"
+                android:background="#ececec"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -50,7 +50,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#38a7e59b"
+                android:background="#ececec"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/tv_soure_way_text"
@@ -74,7 +74,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#38a7e59b"
+                android:background="#ececec"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -97,7 +97,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#38a7e59b"
+                android:background="#ececec"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
