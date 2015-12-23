@@ -48,9 +48,10 @@
                     android:id="@+id/spn_in_ex_cat"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_bac2"
                     android:layout_marginBottom="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content">
+                    android:layout_height="35dp">
 
                 </Spinner>
                 <android.support.design.widget.TextInputLayout

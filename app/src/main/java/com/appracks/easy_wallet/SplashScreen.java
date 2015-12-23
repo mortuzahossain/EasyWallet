@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.appracks.easy_wallet.service.NotificationService;
+
 public class SplashScreen extends AppCompatActivity {
 
     ImageView imageView;
@@ -15,6 +17,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        startService(new Intent(this, NotificationService.class));
         imageView= (ImageView) findViewById(R.id.imageView);
         orient = getWindowManager().getDefaultDisplay().getRotation(); //land=1 and port=0
         if (orient == 0) {

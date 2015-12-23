@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.appracks.easy_wallet.data_object.BarDatas;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import java.io.File;
@@ -51,7 +52,7 @@ public class DB_Manager extends SQLiteOpenHelper {
         values.put(YEAR_FIELD,dt.getYear(sd.getDate()));
         values.put(DATEORDER_FIELD, dt.getDateOrder(sd.getDate()));
         if(from==0){
-            updated=this.database.update(INCOME_TABLE, values, ID_FIELD + "=?",new String[]{String.valueOf(sd.getId())});
+            updated=this.database.update(INCOME_TABLE, values, ID_FIELD + "=?", new String[]{String.valueOf(sd.getId())});
         }else{
             updated=this.database.update(EXPENSE_TABLE, values, ID_FIELD + "=?", new String[]{String.valueOf(sd.getId())});
         }
@@ -64,9 +65,9 @@ public class DB_Manager extends SQLiteOpenHelper {
     public boolean deleteStatement(String id,int from){
         long deleted;
         if(from==0){
-            deleted=this.database.delete(INCOME_TABLE,ID_FIELD + "=?",new String[]{id});
+            deleted=this.database.delete(INCOME_TABLE, ID_FIELD + "=?", new String[]{id});
         }else{
-            deleted=this.database.delete(EXPENSE_TABLE,ID_FIELD + "=?",new String[]{id});
+            deleted=this.database.delete(EXPENSE_TABLE, ID_FIELD + "=?", new String[]{id});
         }
         if(deleted>0){
             return true;
@@ -152,6 +153,33 @@ public class DB_Manager extends SQLiteOpenHelper {
         summery[8]=round(summery[3] - summery[7],2);
 
         return summery;
+    }
+    public ArrayList<BarDatas> getDateAndAmountBetweenDate(String date, String lastDate, String type){
+        ArrayList<BarDatas> list=new ArrayList<BarDatas>();
+        Cursor cursor;
+        String curDate=date;
+        while (1==1){
+            if(type.equalsIgnoreCase("in")) {
+                cursor = this.database.query(INCOME_TABLE, new String[]{AMOUNT_FIELD}, DATE_FIELD + "=?", new String[]{curDate}, null, null, null);
+            }else{
+                cursor = this.database.query(EXPENSE_TABLE, new String[]{AMOUNT_FIELD}, DATE_FIELD + "=?", new String[]{curDate}, null, null, null);
+            }
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                double amount= round(cursor.getDouble(cursor.getColumnIndex(AMOUNT_FIELD)), 2);
+                cursor.close();
+                BarDatas data=new BarDatas((float)amount, curDate);
+                list.add(data);
+            }else{
+                BarDatas data=new BarDatas((float)0.0, curDate);
+                list.add(data);
+            }
+            if(curDate.equalsIgnoreCase(lastDate)){
+                cursor.close();
+                return list;
+            }
+            curDate=DateOperation.getNextDate(curDate);
+        }
     }
     public double getBetweenDateAmount(String dateFrom,String dateTo,String type){
         Cursor cursor;

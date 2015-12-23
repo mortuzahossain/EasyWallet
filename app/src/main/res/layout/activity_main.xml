@@ -34,7 +34,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="5dp"
                         android:background="#294f7f"
                         android:textColor="#FFF"
                         android:layout_height="wrap_content"
@@ -54,32 +54,33 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:orientation="vertical"
-                                android:padding="5dp"
-                                android:background="#d0d0d0"
                                 android:layout_height="match_parent">
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:padding="5dp"
+                                    android:padding="1dp"
                                     android:layout_weight="1"
-                                    android:textColor="#FFF"
-                                    android:background="#05774a"
+                                    android:textColor="#000"
+                                    android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:text="Current week:" />
                                 <LinearLayout
+                                    android:id="@+id/ly_current_week_in"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
                                     android:paddingTop="25dp"
                                     android:paddingBottom="25dp"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="80dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
                                         android:layout_marginRight="3dp"
                                         android:layout_height="match_parent" />
                                     <TextView
+                                        android:id="@+id/tv_in_current_week"
                                         android:layout_width="wrap_content"
                                         android:text="456.00"
                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -97,32 +98,33 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:orientation="vertical"
-                                android:padding="5dp"
-                                android:background="#d0d0d0"
                                 android:layout_height="match_parent">
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:padding="5dp"
+                                    android:padding="1dp"
                                     android:layout_weight="1"
-                                    android:textColor="#FFF"
-                                    android:background="#05774a"
+                                    android:textColor="#000000"
+                                    android:background="#dcdcdc"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:text="Current month:" />
                                 <LinearLayout
+                                    android:id="@+id/ly_current_month_in"
                                     android:layout_width="match_parent"
                                     android:orientation="horizontal"
                                     android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
                                     android:paddingTop="25dp"
                                     android:paddingBottom="25dp"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="80dp">
                                     <ImageView
                                         android:layout_width="20dp"
                                         android:src="@drawable/tk_sign"
                                         android:layout_marginRight="3dp"
                                         android:layout_height="match_parent" />
                                     <TextView
+                                        android:id="@+id/tv_in_current_month"
                                         android:layout_width="wrap_content"
                                         android:text="456.00"
                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -132,148 +134,95 @@
                         </FrameLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/ly_current_week_in"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
+                        <FrameLayout
+                            android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Current week:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_in_current_week"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ly_current_month_in"
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:padding="1dp"
+                                    android:layout_weight="1"
+                                    android:textColor="#000"
+                                    android:background="#dcdcdc"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Current year:" />
+                                <LinearLayout
+                                    android:id="@+id/ly_current_year_in"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
+                                    android:paddingTop="25dp"
+                                    android:paddingBottom="25dp"
+                                    android:layout_height="80dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/tk_sign"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_height="match_parent" />
+                                    <TextView
+                                        android:id="@+id/tv_in_current_year"
+                                        android:layout_width="wrap_content"
+                                        android:text="456.00"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Current month:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_in_current_month"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ly_current_year_in"
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:layout_weight="2"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Current year:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_in_current_year"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ly_total_in"
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:layout_weight="2"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Total:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_in_total"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:gravity="right"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:padding="1dp"
+                                    android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="#dcdcdc"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Total:" />
+                                <LinearLayout
+                                    android:id="@+id/ly_total_in"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
+                                    android:paddingTop="25dp"
+                                    android:paddingBottom="25dp"
+                                    android:layout_height="80dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/tk_sign"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_height="match_parent" />
+                                    <TextView
+                                        android:id="@+id/tv_in_total"
+                                        android:layout_width="wrap_content"
+                                        android:text="456.00"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -322,155 +271,195 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="5dp"
                         android:background="#294f7f"
                         android:textColor="#FFF"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Expense summary" />
                     <LinearLayout
-                        android:id="@+id/ly_current_week_ex"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
+                        <FrameLayout
+                            android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Current week:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_ex_current_week"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ly_current_month_ex"
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:padding="1dp"
+                                    android:layout_weight="1"
+                                    android:textColor="#000"
+                                    android:background="#dcdcdc"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Current week:" />
+                                <LinearLayout
+                                    android:id="@+id/ly_current_week_ex"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
+                                    android:paddingTop="25dp"
+                                    android:paddingBottom="25dp"
+                                    android:layout_height="80dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/tk_sign"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_height="match_parent" />
+                                    <TextView
+                                        android:id="@+id/tv_ex_current_week"
+                                        android:layout_width="wrap_content"
+                                        android:text="456.00"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Current month:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_ex_current_month"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:padding="1dp"
+                                    android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="#dcdcdc"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Current month:" />
+                                <LinearLayout
+                                    android:id="@+id/ly_current_month_ex"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
+                                    android:paddingTop="25dp"
+                                    android:paddingBottom="25dp"
+                                    android:layout_height="80dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/tk_sign"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_height="match_parent" />
+                                    <TextView
+                                        android:id="@+id/tv_ex_current_month"
+                                        android:layout_width="wrap_content"
+                                        android:text="456.00"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/ly_current_year_ex"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:layout_weight="2"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Current year:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_ex_current_year"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:textColor="#000"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ly_total_ex"
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@drawable/summery_item_selector"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:layout_weight="2"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Total:" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/tk_sign"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:id="@+id/tv_ex_total"
-                            android:layout_width="wrap_content"
-                            android:padding="5dp"
-                            android:gravity="right"
-                            android:textColor="#000"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="123.00" />
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:src="@drawable/ico_arrow_next"
-                            android:layout_height="match_parent" />
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:padding="1dp"
+                                    android:layout_weight="1"
+                                    android:textColor="#000"
+                                    android:background="#dcdcdc"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Current year:" />
+                                <LinearLayout
+                                    android:id="@+id/ly_current_year_ex"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
+                                    android:paddingTop="25dp"
+                                    android:paddingBottom="25dp"
+                                    android:layout_height="80dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/tk_sign"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_height="match_parent" />
+                                    <TextView
+                                        android:id="@+id/tv_ex_current_year"
+                                        android:layout_width="wrap_content"
+                                        android:text="456.00"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:padding="1dp"
+                                    android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="#dcdcdc"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Total:" />
+                                <LinearLayout
+                                    android:id="@+id/ly_total_ex"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center"
+                                    android:background="@drawable/summary_cat_selector"
+                                    android:paddingTop="25dp"
+                                    android:paddingBottom="25dp"
+                                    android:layout_height="80dp">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/tk_sign"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_height="match_parent" />
+                                    <TextView
+                                        android:id="@+id/tv_ex_total"
+                                        android:layout_width="wrap_content"
+                                        android:text="456.00"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>

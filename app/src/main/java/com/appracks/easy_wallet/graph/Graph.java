@@ -20,12 +20,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
+import com.appracks.easy_wallet.data_object.BarDatas;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.income.Income;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -40,6 +45,7 @@ public class Graph extends AppCompatActivity {
     private Spinner spn_graph_type,spn_filter_category;
     DB_Manager dbManager;
     private PieChart pieChart;
+    private BarChart barChart;
     DateOperation dt;
     private String firstDate,secondDate;
     private TextView tv_message,tv_current_balance;
@@ -55,6 +61,8 @@ public class Graph extends AppCompatActivity {
         spn_graph_type=(Spinner)findViewById(R.id.spn_graph_type);
         tv_message=(TextView)findViewById(R.id.tv_message);
         tv_current_balance=(TextView)findViewById(R.id.tv_current_balance);
+        pieChart=(PieChart)findViewById(R.id.piechart);
+        barChart=(BarChart)findViewById(R.id.barchart);
         double[] summary=dbManager.getSummery();
         tv_current_balance.setText(String.valueOf(summary[8]));
         spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
@@ -100,9 +108,11 @@ public class Graph extends AppCompatActivity {
                 //noinspection deprecation
                 showDialog(1);
             }
+            barChart.setVisibility(View.GONE);
+            pieChart.setVisibility(View.VISIBLE);
         }else if(type==1){
             if(cat==0){
-
+                setBarGraph(dbManager.getDateAndAmountBetweenDate(dt.getCurrentDateN7(),dt.getCurrentDate(),"in"),"OK");
             }else if(cat==1){
 
             }else if(cat==2){
@@ -112,7 +122,50 @@ public class Graph extends AppCompatActivity {
             }else {
 
             }
+            pieChart.setVisibility(View.GONE);
+            barChart.setVisibility(View.VISIBLE);
         }
+    }
+    private void setBarGraph(ArrayList<BarDatas> list, String sms){
+        if(list.size()>0){
+            tv_message.setText(sms);
+        }else{
+            tv_message.setText("No data available");
+        }
+
+        barChart.setDescription("");
+        barChart.setDrawValueAboveBar(true);
+
+        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                if (e == null) return;
+                Toast.makeText(getApplicationContext(), e.getVal() + " /-", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+        ArrayList<BarEntry> yVals=new ArrayList<BarEntry>();
+        ArrayList<String> xVals=new ArrayList<String>();
+        for(int i=0;i<list.size();i++){
+            yVals.add(new BarEntry(list.get(i).getAmount(),i));
+            xVals.add(dt.getDay(list.get(i).getDate()));
+        }
+        BarDataSet barDataSet=new BarDataSet(yVals,"");
+
+        BarData barData=new BarData(xVals,barDataSet);
+        barData.setGroupSpace(0f);
+        barChart.setData(barData);
+        barChart.highlightValues(null);
+        barChart.invalidate();
+
+        Legend l = barChart.getLegend();
+        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+        l.setXEntrySpace(5);
+        l.setYEntrySpace(7);
     }
     private void setPieGraph(float inAmount,float exAmount, String sms){
         if(inAmount>0 || exAmount>0){
@@ -122,7 +175,6 @@ public class Graph extends AppCompatActivity {
         }
         float[] yData={inAmount,exAmount};
         final String[] xData={"Income","Expense"};
-        pieChart=(PieChart)findViewById(R.id.piechart);
         pieChart.setUsePercentValues(true);
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColorTransparent(true);

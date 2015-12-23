@@ -87,9 +87,14 @@
         </activity>
         <activity
             android:name=".graph.Graph"
-            android:theme="@style/AppTheme3"
-            android:label="@string/title_activity_graph" >
+            android:label="@string/title_activity_graph"
+            android:theme="@style/AppTheme3" >
         </activity>
+
+        <service
+            android:name=".service.NotificationService"
+            android:process=":remote">
+        </service>
     </application>
 
 </manifest>

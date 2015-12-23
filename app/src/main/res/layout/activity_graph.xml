@@ -30,8 +30,8 @@
         <Spinner
             android:id="@+id/spn_filter_category"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#7496b8" />
+            android:layout_height="40dp"
+            android:background="@drawable/spinner_bac" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,6 +50,11 @@
                 android:layout_height="wrap_content" />
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

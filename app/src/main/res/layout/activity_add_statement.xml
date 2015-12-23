@@ -31,9 +31,12 @@
                     android:id="@+id/rb_income"
                     android:layout_width="wrap_content"
                     android:text="Income"
-                    android:background="#18d69c"
+                    android:background="#119832"
                     android:checked="true"
-                    android:padding="4dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:textSize="24dp"
                     android:layout_height="wrap_content" />
                 <RadioButton
@@ -41,8 +44,11 @@
                     android:id="@+id/rb_expense"
                     android:layout_width="wrap_content"
                     android:text="Expense"
-                    android:background="#a21f14"
-                    android:padding="4dp"
+                    android:background="#b92112"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:textSize="24dp"
                     android:layout_height="wrap_content" />
             </RadioGroup>
@@ -75,9 +81,10 @@
                     android:id="@+id/spn_in_ex_cat"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/spinner_bac2"
                     android:layout_marginBottom="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content">
+                    android:layout_height="35dp">
 
                 </Spinner>
                 <android.support.design.widget.TextInputLayout
