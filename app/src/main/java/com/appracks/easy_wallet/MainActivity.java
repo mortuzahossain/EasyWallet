@@ -11,8 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -23,6 +21,8 @@ import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.graph.Graph;
 import com.appracks.easy_wallet.income.Income;
 import com.appracks.easy_wallet.operation.AddStatement;
+import com.appracks.easy_wallet.service.AppAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         setSummery();
         setNavMenu();
         setSummeryClick();
+        AppAnalytics.tracker().send(new HitBuilders.EventBuilder("ui", "open")
+                .setLabel(getString(R.string.app_name))
+                .build());
     }
 
     private void setSummery(){

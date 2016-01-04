@@ -5,14 +5,10 @@ import android.content.res.Configuration;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
-
 import com.appracks.easy_wallet.service.NotificationService;
 
 public class SplashScreen extends AppCompatActivity {
 
-    ImageView imageView;
-    int orient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

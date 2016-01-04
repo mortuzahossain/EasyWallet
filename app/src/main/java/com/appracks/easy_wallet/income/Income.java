@@ -4,11 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,9 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appracks.easy_wallet.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
+import com.appracks.easy_wallet.adapter.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.adapter.StatementViewAdapter;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
@@ -31,6 +31,9 @@ import com.appracks.easy_wallet.dateOperation.DateOperation;
 import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.graph.Graph;
 import com.appracks.easy_wallet.operation.AddStatement;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
 
@@ -48,6 +51,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
     String firstDate,secondDate;
     private TextView tv_nav_balance,tv_filter_balance;
     private ImageButton btn_add_statement;
+    boolean isFirst=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         btn_add_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Income.this, AddStatement.class).putExtra("from","in"));
+                startActivity(new Intent(Income.this, AddStatement.class).putExtra("from", "in"));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
@@ -87,8 +91,8 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         });
         int i=getIntent().getIntExtra("cat_type",99);
         setStatementList(i);
-        spn_filter_category.setSelection(i,true);
-
+        spn_filter_category.setSelection(i, true);
+        showBannerAds();
     }
     private void setStatementList(int cat){
         double[] summery=dbManager.getSummery();
@@ -218,7 +222,51 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
 
     @Override
     public void adapterClick() {
-        overridePendingTransition(R.anim.push_up_in,R.anim.style_static);
+        overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
         finish();
+    }
+    public void showBannerAds(){
+        final LinearLayout ll=(LinearLayout)findViewById(R.id.full_layout);
+        final LinearLayout la=(LinearLayout)findViewById(R.id.amount_lay);
+        final AdView mAdView = (AdView) findViewById(R.id.adView);
+        mAdView.setVisibility(View.GONE);
+        final AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if(isFirst){
+                    ll.setPadding(0, 0, 0, 200);
+                    mAdView.loadAd(adRequest);
+                    isFirst=false;
+                    mAdView.setVisibility(View.VISIBLE);
+                }else{
+                    ll.setPadding(0, 0, 0, la.getHeight()+mAdView.getHeight());
+                }
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+        });
     }
 }

@@ -1,4 +1,4 @@
-package com.appracks.easy_wallet;
+package com.appracks.easy_wallet.adapter;
 
 /**
  * Created by HABIB on 12/11/2015.

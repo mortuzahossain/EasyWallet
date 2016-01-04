@@ -9,8 +9,9 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
-import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
+import com.appracks.easy_wallet.SplashScreen;
+
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,7 +55,7 @@ public class NotificationService extends Service {
                                         .setVisibility(Notification.VISIBILITY_PUBLIC)
                                         .setContentText("Have you income or expense today?");
                         int NOTIFICATION_ID = 6;
-                        PendingIntent contentIntent = PendingIntent.getActivity(NotificationService.this, 0, new Intent(NotificationService.this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent contentIntent = PendingIntent.getActivity(NotificationService.this, 0, new Intent(NotificationService.this, SplashScreen.class), PendingIntent.FLAG_UPDATE_CURRENT);
                         builder.setContentIntent(contentIntent);
                         NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         nManager.notify(NOTIFICATION_ID, builder.build());

@@ -3,7 +3,6 @@ package com.appracks.easy_wallet.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appracks.easy_wallet.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.expense.Expense;

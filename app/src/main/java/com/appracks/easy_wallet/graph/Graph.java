@@ -42,7 +42,7 @@ import java.util.ArrayList;
 public class Graph extends AppCompatActivity {
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    private Spinner spn_graph_type,spn_filter_category;
+    private Spinner spn_filter_category;
     DB_Manager dbManager;
     private PieChart pieChart;
     private BarChart barChart;
@@ -58,7 +58,7 @@ public class Graph extends AppCompatActivity {
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
         dt=new DateOperation();
-        spn_graph_type=(Spinner)findViewById(R.id.spn_graph_type);
+       // spn_graph_type=(Spinner)findViewById(R.id.spn_graph_type);
         tv_message=(TextView)findViewById(R.id.tv_message);
         tv_current_balance=(TextView)findViewById(R.id.tv_current_balance);
         pieChart=(PieChart)findViewById(R.id.piechart);
@@ -67,23 +67,23 @@ public class Graph extends AppCompatActivity {
         tv_current_balance.setText(String.valueOf(summary[8]));
         spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
         String[] list=getResources().getStringArray(R.array.spinner_filter_category);
-        spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART: INCOME"}));
+       // spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART: INCOME"}));
         spn_filter_category.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,list));
-        spn_graph_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setGraph(position, spn_filter_category.getSelectedItemPosition());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        spn_graph_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                setGraph(position, spn_filter_category.getSelectedItemPosition());
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         spn_filter_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setGraph(spn_graph_type.getSelectedItemPosition(), position);
+                setGraph(0, position);
             }
 
             @Override
@@ -91,6 +91,7 @@ public class Graph extends AppCompatActivity {
 
             }
         });
+
         setNavMenu();
     }
     private void setGraph(int type,int cat){

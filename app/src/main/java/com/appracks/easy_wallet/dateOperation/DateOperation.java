@@ -4,10 +4,10 @@ package com.appracks.easy_wallet.dateOperation;
  * Created by HABIB on 12/9/2015.
  */
 
-        import java.text.ParseException;
-        import java.text.SimpleDateFormat;
-        import java.util.Calendar;
-        import java.util.GregorianCalendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class DateOperation {
 

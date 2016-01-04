@@ -1,6 +1,8 @@
-package com.appracks.easy_wallet;
+package com.appracks.easy_wallet.service;
 
 import android.app.Application;
+
+import com.appracks.easy_wallet.R;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
