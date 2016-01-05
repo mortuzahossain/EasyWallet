@@ -32,7 +32,8 @@
                     android:id="@+id/rb_income"
                     android:layout_width="wrap_content"
                     android:text="Income"
-                    android:background="#119832"
+                    android:textColor="#fff"
+                    android:background="#018A00"
                     android:checked="true"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
@@ -45,7 +46,8 @@
                     android:id="@+id/rb_expense"
                     android:layout_width="wrap_content"
                     android:text="Expense"
-                    android:background="#b92112"
+                    android:textColor="#fff"
+                    android:background="#FF3300"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:paddingTop="2dp"
@@ -85,7 +87,7 @@
                     <TextView
                         android:id="@+id/tv_inex_way"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="4"
                         android:layout_marginTop="5dp"
                         android:text="Income source:"
                         android:paddingLeft="5dp"
@@ -95,7 +97,7 @@
                     <Spinner
                         android:id="@+id/spn_in_ex_cat"
                         android:layout_width="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="5"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/spinner_bac2"
                         android:layout_marginBottom="5dp"
@@ -153,15 +155,15 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id">
+            </com.google.android.gms.ads.AdView>
         </LinearLayout>
     </LinearLayout>
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        ads:adSize="LARGE_BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
-    </com.google.android.gms.ads.AdView>
 </RelativeLayout>

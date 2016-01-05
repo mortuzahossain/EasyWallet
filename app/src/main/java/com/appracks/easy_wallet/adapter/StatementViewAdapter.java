@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
-import com.appracks.easy_wallet.expense.Expense;
-import com.appracks.easy_wallet.income.Income;
+import com.appracks.easy_wallet.view.Expense;
+import com.appracks.easy_wallet.view.Income;
 import com.appracks.easy_wallet.operation.StatementDetails;
 
 import java.util.ArrayList;

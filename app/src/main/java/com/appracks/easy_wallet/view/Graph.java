@@ -1,4 +1,4 @@
-package com.appracks.easy_wallet.graph;
+package com.appracks.easy_wallet.view;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,8 +23,6 @@ import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.BarDatas;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
-import com.appracks.easy_wallet.expense.Expense;
-import com.appracks.easy_wallet.income.Income;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;

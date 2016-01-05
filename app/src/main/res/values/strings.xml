@@ -16,4 +16,5 @@
     <string name="title_activity_update_statement">Update statement</string>
     <string name="title_activity_statement_details">Details</string>
     <string name="title_activity_graph">PIE CHART </string>
+    <string name="title_activity_setting">Setting</string>
 </resources>

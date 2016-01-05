@@ -11,15 +11,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.appracks.easy_wallet.database.DB_Manager;
-import com.appracks.easy_wallet.expense.Expense;
-import com.appracks.easy_wallet.graph.Graph;
-import com.appracks.easy_wallet.income.Income;
+import com.appracks.easy_wallet.view.Expense;
+import com.appracks.easy_wallet.view.Graph;
+import com.appracks.easy_wallet.view.Income;
 import com.appracks.easy_wallet.operation.AddStatement;
 import com.appracks.easy_wallet.service.AppAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         ly_total_ex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Expense.class).putExtra("cat_type",3));
+                startActivity(new Intent(MainActivity.this, Expense.class).putExtra("cat_type", 3));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
@@ -234,5 +236,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }else if (id == R.id.mi_about) {
+            return true;
+        }else if (id == R.id.mi_share) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

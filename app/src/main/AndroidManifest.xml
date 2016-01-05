@@ -14,8 +14,8 @@
         android:theme="@style/AppTheme2" >
         <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" >
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,48 +61,53 @@
 
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:label="Summary" >
+            android:label="Summary"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".income.Income"
-            android:screenOrientation="portrait"
+            android:name=".view.Income"
             android:label="@string/title_activity_income"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" >
         </activity>
         <activity
             android:name=".operation.AddStatement"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_add_statement" >
+            android:label="@string/title_activity_add_statement"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".expense.Expense"
+            android:name=".view.Expense"
             android:label="@string/title_activity_expense"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" >
         </activity>
         <activity
             android:name=".operation.UpdateStatement"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_update_statement" >
+            android:label="@string/title_activity_update_statement"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".operation.StatementDetails"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_statement_details" >
+            android:label="@string/title_activity_statement_details"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".graph.Graph"
-            android:screenOrientation="portrait"
+            android:name=".view.Graph"
             android:label="@string/title_activity_graph"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" >
         </activity>
 
         <service
             android:name=".service.NotificationService"
-            android:process=":remote">
+            android:process=":remote" >
         </service>
+
+        <activity
+            android:name=".view.Setting"
+            android:label="@string/title_activity_setting" >
+        </activity>
     </application>
 
 </manifest>

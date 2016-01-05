@@ -28,8 +28,8 @@ import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
-import com.appracks.easy_wallet.expense.Expense;
-import com.appracks.easy_wallet.income.Income;
+import com.appracks.easy_wallet.view.Expense;
+import com.appracks.easy_wallet.view.Income;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -50,6 +50,8 @@ public class AddStatement extends AppCompatActivity {
     private Calendar calendar;
     DB_Manager db_manager;
     private String type,from;
+    AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -234,11 +236,10 @@ public class AddStatement extends AppCompatActivity {
         return null;
     }
     public void showBannerAds(){
-        final AdView mAdView = (AdView) findViewById(R.id.adView);
+        mAdView = (AdView) findViewById(R.id.adView);
         final AdRequest adRequest = new AdRequest.Builder()
                 .build();
         mAdView.loadAd(adRequest);
-
         mAdView.setAdListener(new AdListener() {
             @Override
             public void onAdOpened() {

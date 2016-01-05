@@ -1,14 +1,14 @@
-package com.appracks.easy_wallet.income;
+package com.appracks.easy_wallet.view;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,23 +21,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appracks.easy_wallet.adapter.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
-import com.appracks.easy_wallet.adapter.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.adapter.StatementViewAdapter;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
-import com.appracks.easy_wallet.expense.Expense;
-import com.appracks.easy_wallet.graph.Graph;
 import com.appracks.easy_wallet.operation.AddStatement;
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
-public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
+public class Expense extends AppCompatActivity implements CustomInterfaceAdapter{
 
     private ListView lv_in_statement;
     StatementViewAdapter statementViewAdapter;
@@ -56,7 +54,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+        setContentView(R.layout.activity_expense);
         toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
@@ -69,7 +67,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         btn_add_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Income.this, AddStatement.class).putExtra("from", "in"));
+                startActivity(new Intent(Expense.this, AddStatement.class).putExtra("from","ex"));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
@@ -91,39 +89,40 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         });
         int i=getIntent().getIntExtra("cat_type",99);
         setStatementList(i);
-        spn_filter_category.setSelection(i, true);
+        spn_filter_category.setSelection(i,true);
         showBannerAds();
+
     }
     private void setStatementList(int cat){
         double[] summery=dbManager.getSummery();
         if(cat==0){//0 for weekly
-            list=dbManager.getBetweenDateStatement(dt.getDateOrder(dt.getCurrentDateN7()),dt.getCurrentDateOrder(),"in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getBetweenDateStatement(dt.getDateOrder(dt.getCurrentDateN7()),dt.getCurrentDateOrder(),"ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  Current week income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[0]));
+            tv_category.setText(":::  Current week expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[4]));
         }else if(cat==1){//1 for monthly
-            list=dbManager.getMonthStatement(dt.getCurrentMonth(), dt.getCurrentYear(), "in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getMonthStatement(dt.getCurrentMonth(), dt.getCurrentYear(), "ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  Current month income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[1]));
+            tv_category.setText(":::  Current month expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[5]));
         }else if(cat==2){//2 for yearly
-            list=dbManager.getYearStatement(dt.getCurrentYear(),"in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getYearStatement(dt.getCurrentYear(),"ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  Current year income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[2]));
+            tv_category.setText(":::  Current year expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[6]));
         }else if(cat==3){//3 for all
-            list=dbManager.getAllStatement("in");
-            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            list=dbManager.getAllStatement("ex");
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
             statementViewAdapter.notifyDataSetChanged();
             lv_in_statement.setAdapter(statementViewAdapter);
-            tv_category.setText(":::  All income  :::");
-            tv_filter_balance.setText(String.valueOf(summery[3]));
+            tv_category.setText(":::  All expense  :::");
+            tv_filter_balance.setText(String.valueOf(summery[7]));
         }else if(cat==4){//4 for date wise
             //noinspection deprecation
             showDialog(1);
@@ -153,7 +152,9 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                Toast.makeText(getApplicationContext(), "You are here", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Expense.this, Income.class).putExtra("cat_type", 0));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
             }
         });
         LinearLayout ly_expense=(LinearLayout)findViewById(R.id.ly_expense);
@@ -161,9 +162,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                startActivity(new Intent(Income.this, Expense.class).putExtra("cat_type", 0));
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-                finish();
+                Toast.makeText(getApplicationContext(),"You are here",Toast.LENGTH_LONG).show();
             }
         });
         LinearLayout ly_graph=(LinearLayout)findViewById(R.id.ly_graph);
@@ -171,7 +170,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                startActivity(new Intent(Income.this, Graph.class));
+                startActivity(new Intent(Expense.this, Graph.class));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
@@ -181,17 +180,17 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(Income.this, MainActivity.class));
+        startActivity(new Intent(Expense.this, MainActivity.class));
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();
     }
     private void setBetweenStatement(){
-        list=dbManager.getBetweenDateStatement(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"in");
-        statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+        list=dbManager.getBetweenDateStatement(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"ex");
+        statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.expenseAdapter);
         statementViewAdapter.notifyDataSetChanged();
         lv_in_statement.setAdapter(statementViewAdapter);
-        tv_category.setText("::: Income from " + firstDate + " to " + secondDate + " :::");
-        tv_filter_balance.setText(String.valueOf(dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"in")));
+        tv_category.setText("::: Expense from " + firstDate + " to " + secondDate + " :::");
+        tv_filter_balance.setText(String.valueOf(dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate),dt.getDateOrder(secondDate),"ex")));
     }
 
     @SuppressWarnings("deprecation")
@@ -222,7 +221,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
 
     @Override
     public void adapterClick() {
-        overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
+        overridePendingTransition(R.anim.push_up_in,R.anim.style_static);
         finish();
     }
     public void showBannerAds(){
@@ -243,13 +242,13 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                if(isFirst){
+                if (isFirst) {
                     ll.setPadding(0, 0, 0, 200);
                     mAdView.loadAd(adRequest);
-                    isFirst=false;
+                    isFirst = false;
                     mAdView.setVisibility(View.VISIBLE);
-                }else{
-                    ll.setPadding(0, 0, 0, la.getHeight()+mAdView.getHeight());
+                } else {
+                    ll.setPadding(0, 0, 0, la.getHeight() + mAdView.getHeight());
                 }
             }
 
