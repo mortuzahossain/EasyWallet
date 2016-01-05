@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.appracks.easy_wallet.operation.StatementDetails">
 
     <LinearLayout
@@ -25,102 +26,110 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:padding="10dp"
+                android:paddingLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:background="#ececec"
+                android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
-                    android:text="Date:"
+                    android:text="Date"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="0dp"
                     android:text="12-12-2015"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#ececec"
+                android:paddingLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/tv_soure_way_text"
                     android:layout_width="0dp"
-                    android:text="Income source:"
+                    android:text="Income source"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/tv_source_way"
                     android:layout_width="0dp"
                     android:text="Salary"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#ececec"
+                android:paddingLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
-                    android:text="Description:"
+                    android:text="Description"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/tv_description"
                     android:layout_width="0dp"
                     android:text="Office"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#ececec"
+                android:paddingLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
-                    android:text="Amount:"
+                    android:text="Amount"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/tv_amount"
                     android:layout_width="0dp"
                     android:text="5000"
                     android:layout_weight="1"
                     android:textColor="#000"
+                    android:gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/btn_back"
@@ -145,5 +154,13 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
-
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        ads:adSize="LARGE_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
 </RelativeLayout>

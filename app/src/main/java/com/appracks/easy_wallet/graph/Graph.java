@@ -37,6 +37,10 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 public class Graph extends AppCompatActivity {
@@ -93,6 +97,7 @@ public class Graph extends AppCompatActivity {
         });
 
         setNavMenu();
+        showBannerAds();
     }
     private void setGraph(int type,int cat){
         if(type==0){
@@ -298,4 +303,37 @@ public class Graph extends AppCompatActivity {
             setPieGraph((float) dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate), dt.getDateOrder(secondDate), "in"), (float) dbManager.getBetweenDateAmount(dt.getDateOrder(firstDate), dt.getDateOrder(secondDate), "ex"), "From " + firstDate + " to " + secondDate);
         }
     };
+    public void showBannerAds(){
+        final AdView mAdView = (AdView) findViewById(R.id.adView);
+        final AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+        });
+    }
 }

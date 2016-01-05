@@ -16,6 +16,9 @@ import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.income.Income;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class StatementDetails extends AppCompatActivity {
     private Button btn_back,btn_delete,btn_update;
@@ -70,23 +73,24 @@ public class StatementDetails extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StatementDetails.this,UpdateStatement.class).putExtra("from",from).putExtra("statementObject",sd));
-                overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+                startActivity(new Intent(StatementDetails.this, UpdateStatement.class).putExtra("from", from).putExtra("statementObject", sd));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
         });
 
-        tv_date.setText(sd.getDate());
-        tv_source_way.setText(sd.getSourceWay());
-        tv_description.setText(sd.getDescription());
-        tv_amount.setText(String.valueOf(sd.getAmount()));
+        tv_date.setText(": " + sd.getDate());
+        tv_source_way.setText(": "+sd.getSourceWay());
+        tv_description.setText(": "+sd.getDescription());
+        tv_amount.setText(": "+String.valueOf(sd.getAmount()));
         if(from==0){
-            tv_source_way_text.setText("Income source:");
+            tv_source_way_text.setText("Income source");
             getSupportActionBar().setTitle("Income details");
         }else{
-            tv_source_way_text.setText("Expense way:");
+            tv_source_way_text.setText("Expense way");
             getSupportActionBar().setTitle("Expense details");
         }
+        showBannerAds();
     }
 
     @Override
@@ -99,5 +103,38 @@ public class StatementDetails extends AppCompatActivity {
         }
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
         finish();
+    }
+    public void showBannerAds(){
+        final AdView mAdView = (AdView) findViewById(R.id.adView);
+        final AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+        });
     }
 }

@@ -26,6 +26,9 @@ import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.income.Income;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class UpdateStatement extends AppCompatActivity {
 
@@ -34,7 +37,7 @@ public class UpdateStatement extends AppCompatActivity {
     private ImageButton btn_date_picker;
     private Button btn_save,btn_back;
     private Spinner spn_in_ex_cat;
-    private TextView tv_date;
+    private TextView tv_date,tv_inex_way;
     private int year, month, day;
     DB_Manager db_manager;
     DateOperation dt;
@@ -48,6 +51,7 @@ public class UpdateStatement extends AppCompatActivity {
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         tv_date=(TextView)findViewById(R.id.tv_date);
+        tv_inex_way=(TextView)findViewById(R.id.tv_inex_way);
         dt=new DateOperation();
         sd=(StatementData)getIntent().getSerializableExtra("statementObject");
         from=getIntent().getIntExtra("from", 0);
@@ -56,14 +60,17 @@ public class UpdateStatement extends AppCompatActivity {
         month = Integer.valueOf(dt.getMonth(sd.getDate()))-1;
         day = Integer.valueOf(dt.getDay(sd.getDate()));
         setDate(year, month + 1, day);
+        showBannerAds();
     }
     private void setInputLayout(){
         spn_in_ex_cat=(Spinner)findViewById(R.id.spn_in_ex_cat);
         String[] catList;
         if(from==0){
             catList=getResources().getStringArray(R.array.income_category);
+            tv_inex_way.setText("Income source:");
         }else{
             catList=getResources().getStringArray(R.array.expense_category);
+            tv_inex_way.setText("Expense way:");
         }
         spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, catList));
         spn_in_ex_cat.setSelection(getSelectedCat(catList));
@@ -186,5 +193,38 @@ public class UpdateStatement extends AppCompatActivity {
             }, year, month, day);
         }
         return null;
+    }
+    public void showBannerAds(){
+        final AdView mAdView = (AdView) findViewById(R.id.adView);
+        final AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+        });
     }
 }

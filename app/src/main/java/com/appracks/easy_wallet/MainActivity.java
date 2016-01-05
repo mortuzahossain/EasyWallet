@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
-    ImageButton btn_add_statement;
+    ImageButton btn_add_in_statement,btn_add_ex_statement;
     DB_Manager dbManager;
     private TextView tv_in_current_week,tv_in_current_month,tv_in_current_year,tv_in_total,tv_ex_current_week,tv_ex_current_month,tv_ex_current_year,tv_ex_total,tv_balance,tv_nav_balance;
     @Override
@@ -50,11 +50,20 @@ public class MainActivity extends AppCompatActivity {
         tv_in_total=(TextView)findViewById(R.id.tv_in_total);
         tv_ex_total=(TextView)findViewById(R.id.tv_ex_total);
 
-        btn_add_statement=(ImageButton)findViewById(R.id.btn_add_statement);
-        btn_add_statement.setOnClickListener(new View.OnClickListener() {
+        btn_add_in_statement=(ImageButton)findViewById(R.id.btn_add_in_statement);
+        btn_add_in_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AddStatement.class).putExtra("from", "main"));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
+        btn_add_ex_statement=(ImageButton)findViewById(R.id.btn_add_ex_statement);
+        btn_add_ex_statement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AddStatement.class).putExtra("from", "exFromMain"));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }

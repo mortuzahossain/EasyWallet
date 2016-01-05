@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme2" >
         <activity
             android:name=".SplashScreen"
+            android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,33 +61,40 @@
 
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:label="Summary" >
         </activity>
         <activity
             android:name=".income.Income"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_income"
             android:theme="@style/AppTheme3" >
         </activity>
         <activity
             android:name=".operation.AddStatement"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_add_statement" >
         </activity>
         <activity
             android:name=".expense.Expense"
             android:label="@string/title_activity_expense"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" >
         </activity>
         <activity
             android:name=".operation.UpdateStatement"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_update_statement" >
         </activity>
         <activity
             android:name=".operation.StatementDetails"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_statement_details" >
         </activity>
         <activity
             android:name=".graph.Graph"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_graph"
             android:theme="@style/AppTheme3" >
         </activity>

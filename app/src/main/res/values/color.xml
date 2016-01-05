@@ -16,4 +16,7 @@
 
     <color name="c_r">#a21f14</color>
     <color name="c_g">#058111</color>
+
+    <color name="color_summary_cat_normal">#16A085</color>
+    <color name="color_summary_cat_pressed">#106653</color>
 </resources>

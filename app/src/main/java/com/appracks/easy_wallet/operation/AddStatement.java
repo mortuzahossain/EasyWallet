@@ -30,6 +30,9 @@ import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.expense.Expense;
 import com.appracks.easy_wallet.income.Income;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.Calendar;
 
@@ -42,7 +45,7 @@ public class AddStatement extends AppCompatActivity {
     private Spinner spn_in_ex_cat;
     private RadioGroup rg_in_ex_type;
     private RadioButton rb_income,rb_expense;
-    private TextView tv_date;
+    private TextView tv_date,tv_inex_way;
     private int year, month, day;
     private Calendar calendar;
     DB_Manager db_manager;
@@ -55,6 +58,7 @@ public class AddStatement extends AppCompatActivity {
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         tv_date=(TextView)findViewById(R.id.tv_date);
+        tv_inex_way=(TextView)findViewById(R.id.tv_inex_way);
         rg_in_ex_type=(RadioGroup)findViewById(R.id.rg_statementType);
         rb_income=(RadioButton)findViewById(R.id.rb_income);
         rb_expense=(RadioButton)findViewById(R.id.rb_expense);
@@ -72,14 +76,17 @@ public class AddStatement extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         setDate(year, month + 1, day);
+        showBannerAds();
     }
 
     private void setSpinnerCat(int id){
         if(id==R.id.rb_income){
             type="in";
+            tv_inex_way.setText("Income source:");
             spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.income_category)));
         }else{
             type="ex";
+            tv_inex_way.setText("Expense way:");
             spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.expense_category)));
         }
     }
@@ -153,6 +160,9 @@ public class AddStatement extends AppCompatActivity {
         if(from.equalsIgnoreCase("ex")){
             setSpinnerCat(R.id.rb_expense);
             rg_in_ex_type.check(R.id.rb_expense);
+        }else if(from.equalsIgnoreCase("exFromMain")){
+            setSpinnerCat(R.id.rb_expense);
+            rg_in_ex_type.check(R.id.rb_expense);
         }
     }
     private void setDate(int year,int month, int day){
@@ -186,7 +196,7 @@ public class AddStatement extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if(from.equalsIgnoreCase("in")){
-            startActivity(new Intent(AddStatement.this,Income.class).putExtra("cat_type",0));
+            startActivity(new Intent(AddStatement.this, Income.class).putExtra("cat_type", 0));
         }else if(from.equalsIgnoreCase("ex")){
             startActivity(new Intent(AddStatement.this,Expense.class).putExtra("cat_type",0));
         }else {
@@ -222,5 +232,38 @@ public class AddStatement extends AppCompatActivity {
             }, year, month, day);
         }
         return null;
+    }
+    public void showBannerAds(){
+        final AdView mAdView = (AdView) findViewById(R.id.adView);
+        final AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+        });
     }
 }
