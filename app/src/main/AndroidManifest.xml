@@ -108,6 +108,14 @@
             android:name=".view.Setting"
             android:label="@string/title_activity_setting" >
         </activity>
+        <activity
+            android:name=".view.About"
+            android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:name=".operation.PasswordRecovery"
+            android:label="@string/title_activity_password_recovery" >
+        </activity>
     </application>
 
 </manifest>

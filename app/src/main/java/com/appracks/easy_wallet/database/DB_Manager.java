@@ -40,6 +40,98 @@ public class DB_Manager extends SQLiteOpenHelper {
     private static final String DATEORDER_FIELD = "dateorder";
     DateOperation dt;
 
+
+    public String getPassword(){
+        Cursor cursor = this.database.query("setting", null,"value=?", new String[]{"999"}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String pass = cursor.getString(cursor.getColumnIndex("name"));
+            cursor.close();
+            return pass;
+        }
+        return null;
+    }
+    public String getSecurityQuestion(){
+        Cursor cursor = this.database.query("setting", null,"value=?", new String[]{"888"}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String pass = cursor.getString(cursor.getColumnIndex("name"));
+            cursor.close();
+            return pass;
+        }
+        return null;
+    }
+    public String getQuestionAnswer(){
+        Cursor cursor = this.database.query("setting", null,"value=?", new String[]{"777"}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String pass = cursor.getString(cursor.getColumnIndex("name"));
+            cursor.close();
+            return pass;
+        }
+        return null;
+    }
+    public boolean getIsPasswordOn(){
+        Cursor cursor = this.database.query("setting", null,"name=?", new String[]{"isPasswordOn"}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int id = cursor.getInt(cursor.getColumnIndex("value"));
+            cursor.close();
+            if(id==1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean setIsPasswordOn(int value){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("value", value);
+
+        long inserted=this.database.update("setting", values, "name=?", new String[]{"isPasswordOn"});
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean setPassword(String value){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("name", value);
+
+        long inserted=this.database.update("setting", values, "value=?", new String[]{"999"});
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean setSecurityQuestion(String value){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("name", value);
+
+        long inserted=this.database.update("setting", values, "value=?", new String[]{"888"});
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean setQuestionAnswer(String value){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("name", value);
+
+        long inserted=this.database.update("setting", values, "value=?", new String[]{"777"});
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
     public boolean updateStatement(StatementData sd,int from){
         long updated;
         ContentValues values = new ContentValues();

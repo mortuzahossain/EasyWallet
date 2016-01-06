@@ -11,29 +11,39 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.appracks.easy_wallet.database.DB_Manager;
+import com.appracks.easy_wallet.operation.AddStatement;
+import com.appracks.easy_wallet.operation.PasswordRecovery;
+import com.appracks.easy_wallet.service.AppAnalytics;
+import com.appracks.easy_wallet.view.About;
 import com.appracks.easy_wallet.view.Expense;
 import com.appracks.easy_wallet.view.Graph;
 import com.appracks.easy_wallet.view.Income;
-import com.appracks.easy_wallet.operation.AddStatement;
-import com.appracks.easy_wallet.service.AppAnalytics;
+import com.appracks.easy_wallet.view.Setting;
 import com.google.android.gms.analytics.HitBuilders;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static boolean alrearyChecked=false;
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     ImageButton btn_add_in_statement,btn_add_ex_statement;
     DB_Manager dbManager;
     private TextView tv_in_current_week,tv_in_current_month,tv_in_current_year,tv_in_total,tv_ex_current_week,tv_ex_current_month,tv_ex_current_year,tv_ex_total,tv_balance,tv_nav_balance;
+    private AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
         tv_ex_current_year=(TextView)findViewById(R.id.tv_ex_current_year);
         tv_in_total=(TextView)findViewById(R.id.tv_in_total);
         tv_ex_total=(TextView)findViewById(R.id.tv_ex_total);
+
+        if(dbManager.getIsPasswordOn()){
+            if(alrearyChecked){}else{
+                setPasswordCheck();
+            }
+        }
 
         btn_add_in_statement=(ImageButton)findViewById(R.id.btn_add_in_statement);
         btn_add_in_statement.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +94,46 @@ public class MainActivity extends AppCompatActivity {
                 .setLabel(getString(R.string.app_name))
                 .build());
     }
-
+    private void setPasswordCheck(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setIcon(R.mipmap.ic_launcher);
+            this.builder = builder.setTitle("Easy Wallet is locked  !");
+            final EditText input = new EditText(this);
+        input.setHint("Enter your password");
+        input.setGravity(Gravity.CENTER);
+        input.setInputType(InputType.TYPE_CLASS_TEXT |
+                InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setSelection(input.getText().length());
+        builder.setView(input);
+        builder.setPositiveButton("Unlock", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (input.getText().toString().trim().equals(dbManager.getPassword())) {
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    alrearyChecked=true;
+                } else {
+                    Toast.makeText(getApplicationContext(), "Wrong password! try again...", Toast.LENGTH_SHORT).show();
+                    setPasswordCheck();
+                }
+            }
+        });
+        builder.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                System.exit(0);
+            }
+        });
+        builder.setNeutralButton("Forget?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(MainActivity.this, PasswordRecovery.class));
+                finish();
+            }
+        });
+        builder.show();
+    }
     private void setSummery(){
         double[] summery=dbManager.getSummery();
         tv_in_current_week.setText(String.valueOf(summery[0]));
@@ -247,10 +302,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, Setting.class));
+            overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
             return true;
         }else if (id == R.id.mi_about) {
+            startActivity(new Intent(MainActivity.this, About.class));
+            overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
             return true;
         }else if (id == R.id.mi_share) {
+            Intent intent=new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT, "Download Easy Wallet application from below link:\n https://play.google.com/store/apps/details?id=com.appracks.easy_wallet");
+            intent.setType("text/plain");
+            startActivity(intent);
             return true;
         }
 
