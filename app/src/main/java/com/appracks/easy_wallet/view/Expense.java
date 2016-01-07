@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -48,6 +49,7 @@ public class Expense extends AppCompatActivity implements CustomInterfaceAdapter
     ArrayList<StatementData> list;
     String firstDate,secondDate;
     private TextView tv_nav_balance,tv_filter_balance;
+    ImageView iv_currency_ex;
     private ImageButton btn_add_statement;
     boolean isFirst=true;
 
@@ -59,6 +61,28 @@ public class Expense extends AppCompatActivity implements CustomInterfaceAdapter
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
         dt=new DateOperation();
+
+        iv_currency_ex=(ImageView)findViewById(R.id.iv_currency_ex);
+        if(MainActivity.sign.equalsIgnoreCase("DOLLAR")){
+            iv_currency_ex.setImageResource(R.drawable.dollar_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("TAKA")){
+            iv_currency_ex.setImageResource(R.drawable.taka_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("POUND")){
+            iv_currency_ex.setImageResource(R.drawable.pound_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("RUPEE")){
+            iv_currency_ex.setImageResource(R.drawable.rupee_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("RIAL")){
+            iv_currency_ex.setImageResource(R.drawable.rial_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("EURO")){
+            iv_currency_ex.setImageResource(R.drawable.euro_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("YEN")){
+            iv_currency_ex.setImageResource(R.drawable.yen_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("YUAN")){
+            iv_currency_ex.setImageResource(R.drawable.yuan_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("FRANC")){
+            iv_currency_ex.setImageResource(R.drawable.franc_sign);
+        }
+
         lv_in_statement=(ListView)findViewById(R.id.lv_in_statement);
         tv_category=(TextView)findViewById(R.id.tv_category);
         tv_nav_balance=(TextView)findViewById(R.id.tv_current_balance);

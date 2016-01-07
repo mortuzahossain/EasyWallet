@@ -61,6 +61,16 @@ public class DB_Manager extends SQLiteOpenHelper {
         }
         return null;
     }
+    public String getCurrency(){
+        Cursor cursor = this.database.query("setting", null,"name=?", new String[]{"currency"}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String currency = cursor.getString(cursor.getColumnIndex("value"));
+            cursor.close();
+            return currency;
+        }
+        return null;
+    }
     public String getQuestionAnswer(){
         Cursor cursor = this.database.query("setting", null,"value=?", new String[]{"777"}, null, null, null);
         if (cursor != null && cursor.getCount() > 0) {
@@ -102,6 +112,18 @@ public class DB_Manager extends SQLiteOpenHelper {
         values.put("name", value);
 
         long inserted=this.database.update("setting", values, "value=?", new String[]{"999"});
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean setCurrency(String value){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("value", value);
+
+        long inserted=this.database.update("setting", values, "name=?", new String[]{"currency"});
         if(inserted>0){
             return true;
         }else {

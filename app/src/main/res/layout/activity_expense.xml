@@ -107,8 +107,8 @@
                 <LinearLayout
                     android:id="@+id/amount_lay"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/summery_item_gradient_bac_normal"
+                    android:layout_height="45dp"
+                    android:background="#1c7e60"
                     android:orientation="horizontal"
                     android:paddingLeft="20dp">
 
@@ -118,7 +118,7 @@
                         android:gravity="center"
                         android:text="Amount: "
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#646464" />
+                        android:textColor="#c1c1c1" />
 
                     <TextView
                         android:id="@+id/tv_filter_balance"
@@ -127,13 +127,14 @@
                         android:gravity="center"
                         android:text="123.00"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#000" />
+                        android:textColor="#FFF" />
 
                     <ImageView
+                        android:id="@+id/iv_currency_ex"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="3dp"
-                        android:src="@drawable/tk_sign" />
+                        android:src="@drawable/dollar_sign" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -143,8 +144,8 @@
 
                         <ImageButton
                             android:id="@+id/btn_add_statement"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:background="@drawable/ico_add_statement" />
                     </LinearLayout>
                 </LinearLayout>
@@ -225,7 +226,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
-                    android:text="Summery"
+                    android:text="Overview"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title" />
             </LinearLayout>
@@ -236,7 +237,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="1dp"
                 android:layout_marginTop="1dp"
-                android:background="@color/list_background_pressed"
+                android:background="@drawable/nav_list_selector"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -263,7 +264,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="1dp"
                 android:layout_marginTop="1dp"
-                android:background="@drawable/nav_list_selector"
+                android:background="@color/list_background_pressed"
                 android:orientation="horizontal">
 
                 <ImageView

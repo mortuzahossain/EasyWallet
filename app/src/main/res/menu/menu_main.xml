@@ -9,11 +9,11 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
     <item android:id="@+id/mi_about"
-        android:title="@string/action_settings"
+        android:title="About app"
         android:orderInCategory="100"
         app:showAsAction="never" />
     <item android:id="@+id/mi_share"
-        android:title="@string/action_settings"
+        android:title="Share app"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

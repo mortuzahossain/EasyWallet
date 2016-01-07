@@ -9,7 +9,7 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Overview</string>
     <string name="title_activity_income">Income | </string>
     <string name="title_activity_add_statement">Add Statement</string>
     <string name="title_activity_expense">Expense</string>

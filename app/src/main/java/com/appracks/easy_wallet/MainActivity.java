@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,8 @@ import com.google.android.gms.analytics.HitBuilders;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static boolean alrearyChecked=false;
+    public static boolean alrearyChecked=false;
+    public static String sign="";
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     DB_Manager dbManager;
     private TextView tv_in_current_week,tv_in_current_month,tv_in_current_year,tv_in_total,tv_ex_current_week,tv_ex_current_month,tv_ex_current_year,tv_ex_total,tv_balance,tv_nav_balance;
     private AlertDialog.Builder builder;
+    ImageView iv_currency_1,iv_currency_2,iv_currency_3,iv_currency_4,iv_currency_5,iv_currency_6,iv_currency_7,iv_currency_8,iv_currency_9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
+        sign=dbManager.getCurrency();
         tv_balance=(TextView)findViewById(R.id.tv_balance);
         tv_nav_balance=(TextView)findViewById(R.id.tv_current_balance);
         tv_in_current_week=(TextView)findViewById(R.id.tv_in_current_week);
@@ -90,9 +94,115 @@ public class MainActivity extends AppCompatActivity {
         setSummery();
         setNavMenu();
         setSummeryClick();
+        setCurrencyIcon();
         AppAnalytics.tracker().send(new HitBuilders.EventBuilder("ui", "open")
                 .setLabel(getString(R.string.app_name))
                 .build());
+    }
+
+    private void setCurrencyIcon(){
+        iv_currency_1=(ImageView)findViewById(R.id.iv_currency_1);
+        iv_currency_2=(ImageView)findViewById(R.id.iv_currency_2);
+        iv_currency_3=(ImageView)findViewById(R.id.iv_currency_3);
+        iv_currency_4=(ImageView)findViewById(R.id.iv_currency_4);
+        iv_currency_5=(ImageView)findViewById(R.id.iv_currency_5);
+        iv_currency_6=(ImageView)findViewById(R.id.iv_currency_6);
+        iv_currency_7=(ImageView)findViewById(R.id.iv_currency_7);
+        iv_currency_8=(ImageView)findViewById(R.id.iv_currency_8);
+        iv_currency_9=(ImageView)findViewById(R.id.iv_currency_9);
+        if(sign.equalsIgnoreCase("TAKA")){
+            iv_currency_1.setImageResource(R.drawable.taka_sign);
+            iv_currency_2.setImageResource(R.drawable.taka_sign);
+            iv_currency_3.setImageResource(R.drawable.taka_sign);
+            iv_currency_4.setImageResource(R.drawable.taka_sign);
+            iv_currency_5.setImageResource(R.drawable.taka_sign);
+            iv_currency_6.setImageResource(R.drawable.taka_sign);
+            iv_currency_7.setImageResource(R.drawable.taka_sign);
+            iv_currency_8.setImageResource(R.drawable.taka_sign);
+            iv_currency_9.setImageResource(R.drawable.taka_sign);
+        }else if(sign.equalsIgnoreCase("DOLLAR")){
+            iv_currency_1.setImageResource(R.drawable.dollar_sign);
+            iv_currency_2.setImageResource(R.drawable.dollar_sign);
+            iv_currency_3.setImageResource(R.drawable.dollar_sign);
+            iv_currency_4.setImageResource(R.drawable.dollar_sign);
+            iv_currency_5.setImageResource(R.drawable.dollar_sign);
+            iv_currency_6.setImageResource(R.drawable.dollar_sign);
+            iv_currency_7.setImageResource(R.drawable.dollar_sign);
+            iv_currency_8.setImageResource(R.drawable.dollar_sign);
+            iv_currency_9.setImageResource(R.drawable.dollar_sign);
+        }else if(sign.equalsIgnoreCase("POUND")){
+            iv_currency_1.setImageResource(R.drawable.pound_sign);
+            iv_currency_2.setImageResource(R.drawable.pound_sign);
+            iv_currency_3.setImageResource(R.drawable.pound_sign);
+            iv_currency_4.setImageResource(R.drawable.pound_sign);
+            iv_currency_5.setImageResource(R.drawable.pound_sign);
+            iv_currency_6.setImageResource(R.drawable.pound_sign);
+            iv_currency_7.setImageResource(R.drawable.pound_sign);
+            iv_currency_8.setImageResource(R.drawable.pound_sign);
+            iv_currency_9.setImageResource(R.drawable.pound_sign);
+        }else if(sign.equalsIgnoreCase("EURO")){
+            iv_currency_1.setImageResource(R.drawable.euro_sign);
+            iv_currency_2.setImageResource(R.drawable.euro_sign);
+            iv_currency_3.setImageResource(R.drawable.euro_sign);
+            iv_currency_4.setImageResource(R.drawable.euro_sign);
+            iv_currency_5.setImageResource(R.drawable.euro_sign);
+            iv_currency_6.setImageResource(R.drawable.euro_sign);
+            iv_currency_7.setImageResource(R.drawable.euro_sign);
+            iv_currency_8.setImageResource(R.drawable.euro_sign);
+            iv_currency_9.setImageResource(R.drawable.euro_sign);
+        }
+        else if(sign.equalsIgnoreCase("RUPEE")){
+            iv_currency_1.setImageResource(R.drawable.rupee_sign);
+            iv_currency_2.setImageResource(R.drawable.rupee_sign);
+            iv_currency_3.setImageResource(R.drawable.rupee_sign);
+            iv_currency_4.setImageResource(R.drawable.rupee_sign);
+            iv_currency_5.setImageResource(R.drawable.rupee_sign);
+            iv_currency_6.setImageResource(R.drawable.rupee_sign);
+            iv_currency_7.setImageResource(R.drawable.rupee_sign);
+            iv_currency_8.setImageResource(R.drawable.rupee_sign);
+            iv_currency_9.setImageResource(R.drawable.rupee_sign);
+        }else if(sign.equalsIgnoreCase("RIAL")){
+            iv_currency_1.setImageResource(R.drawable.rial_sign);
+            iv_currency_2.setImageResource(R.drawable.rial_sign);
+            iv_currency_3.setImageResource(R.drawable.rial_sign);
+            iv_currency_4.setImageResource(R.drawable.rial_sign);
+            iv_currency_5.setImageResource(R.drawable.rial_sign);
+            iv_currency_6.setImageResource(R.drawable.rial_sign);
+            iv_currency_7.setImageResource(R.drawable.rial_sign);
+            iv_currency_8.setImageResource(R.drawable.rial_sign);
+            iv_currency_9.setImageResource(R.drawable.rial_sign);
+        }else if(sign.equalsIgnoreCase("YEN")){
+            iv_currency_1.setImageResource(R.drawable.yen_sign);
+            iv_currency_2.setImageResource(R.drawable.yen_sign);
+            iv_currency_3.setImageResource(R.drawable.yen_sign);
+            iv_currency_4.setImageResource(R.drawable.yen_sign);
+            iv_currency_5.setImageResource(R.drawable.yen_sign);
+            iv_currency_6.setImageResource(R.drawable.yen_sign);
+            iv_currency_7.setImageResource(R.drawable.yen_sign);
+            iv_currency_8.setImageResource(R.drawable.yen_sign);
+            iv_currency_9.setImageResource(R.drawable.yen_sign);
+        }else if(sign.equalsIgnoreCase("YUAN")){
+            iv_currency_1.setImageResource(R.drawable.yuan_sign);
+            iv_currency_2.setImageResource(R.drawable.yuan_sign);
+            iv_currency_3.setImageResource(R.drawable.yuan_sign);
+            iv_currency_4.setImageResource(R.drawable.yuan_sign);
+            iv_currency_5.setImageResource(R.drawable.yuan_sign);
+            iv_currency_6.setImageResource(R.drawable.yuan_sign);
+            iv_currency_7.setImageResource(R.drawable.yuan_sign);
+            iv_currency_8.setImageResource(R.drawable.yuan_sign);
+            iv_currency_9.setImageResource(R.drawable.yuan_sign);
+        }else if(sign.equalsIgnoreCase("FRANC")){
+            iv_currency_1.setImageResource(R.drawable.franc_sign);
+            iv_currency_2.setImageResource(R.drawable.franc_sign);
+            iv_currency_3.setImageResource(R.drawable.franc_sign);
+            iv_currency_4.setImageResource(R.drawable.franc_sign);
+            iv_currency_5.setImageResource(R.drawable.franc_sign);
+            iv_currency_6.setImageResource(R.drawable.franc_sign);
+            iv_currency_7.setImageResource(R.drawable.franc_sign);
+            iv_currency_8.setImageResource(R.drawable.franc_sign);
+            iv_currency_9.setImageResource(R.drawable.franc_sign);
+        }
+
     }
     private void setPasswordCheck(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -100,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setIcon(R.mipmap.ic_launcher);
             this.builder = builder.setTitle("Easy Wallet is locked  !");
             final EditText input = new EditText(this);
-        input.setHint("Enter your password");
+        input.setHint("Enter password");
         input.setGravity(Gravity.CENTER);
         input.setInputType(InputType.TYPE_CLASS_TEXT |
                 InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -303,11 +413,12 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             startActivity(new Intent(MainActivity.this, Setting.class));
-            overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
+            overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
+            finish();
             return true;
         }else if (id == R.id.mi_about) {
             startActivity(new Intent(MainActivity.this, About.class));
-            overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
+            overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
             return true;
         }else if (id == R.id.mi_share) {
             Intent intent=new Intent();

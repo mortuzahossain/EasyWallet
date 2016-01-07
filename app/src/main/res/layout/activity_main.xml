@@ -40,7 +40,7 @@
                         android:background="#294f7f"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Income summary"
+                        android:text="Income overview"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#FFF" />
 
@@ -83,10 +83,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_1"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_in_current_week"
@@ -134,10 +135,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_2"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_in_current_month"
@@ -190,10 +192,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_3"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_in_current_year"
@@ -240,10 +243,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_4"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_in_total"
@@ -327,10 +331,11 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/iv_currency_5"
                                 android:layout_width="20dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="3dp"
-                                android:src="@drawable/tk_sign" />
+                                android:src="@drawable/dollar_sign" />
 
                             <TextView
                                 android:id="@+id/tv_balance"
@@ -388,7 +393,7 @@
                         android:background="#294f7f"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Expense summary"
+                        android:text="Expense overview"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#FFF" />
 
@@ -431,10 +436,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_6"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_ex_current_week"
@@ -482,10 +488,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_7"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_ex_current_month"
@@ -538,10 +545,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_8"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_ex_current_year"
@@ -588,10 +596,11 @@
                                     android:orientation="horizontal">
 
                                     <ImageView
+                                        android:id="@+id/iv_currency_9"
                                         android:layout_width="20dp"
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="3dp"
-                                        android:src="@drawable/tk_sign" />
+                                        android:src="@drawable/dollar_sign" />
 
                                     <TextView
                                         android:id="@+id/tv_ex_total"
@@ -671,7 +680,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:minHeight="?android:attr/listPreferredItemHeightSmall"
-                    android:text="Summary"
+                    android:text="Overview"
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title" />
             </LinearLayout>
