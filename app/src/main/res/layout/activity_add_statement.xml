@@ -155,15 +155,6 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/banner_ad_unit_id">
-            </com.google.android.gms.ads.AdView>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

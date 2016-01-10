@@ -59,6 +59,7 @@ public class AddStatement extends AppCompatActivity {
         db_manager=DB_Manager.getInstance(this);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tv_date=(TextView)findViewById(R.id.tv_date);
         tv_inex_way=(TextView)findViewById(R.id.tv_inex_way);
         rg_in_ex_type=(RadioGroup)findViewById(R.id.rg_statementType);
@@ -78,7 +79,6 @@ public class AddStatement extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         setDate(year, month + 1, day);
-        showBannerAds();
     }
 
     private void setSpinnerCat(int id){
@@ -209,16 +209,11 @@ public class AddStatement extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_statement, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -234,37 +229,5 @@ public class AddStatement extends AppCompatActivity {
             }, year, month, day);
         }
         return null;
-    }
-    public void showBannerAds(){
-        mAdView = (AdView) findViewById(R.id.adView);
-        final AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-            }
-
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                super.onAdFailedToLoad(errorCode);
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                super.onAdLeftApplication();
-            }
-        });
     }
 }

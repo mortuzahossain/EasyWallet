@@ -40,7 +40,7 @@
                         android:background="#294f7f"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Income overview"
+                        android:text="INCOME OVERVIEW"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#FFF" />
 
@@ -393,7 +393,7 @@
                         android:background="#294f7f"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Expense overview"
+                        android:text="EXPENSE OVERVIEW"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#FFF" />
 

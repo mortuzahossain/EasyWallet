@@ -81,6 +81,8 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             iv_currency_in.setImageResource(R.drawable.yuan_sign);
         }else if(MainActivity.sign.equalsIgnoreCase("FRANC")){
             iv_currency_in.setImageResource(R.drawable.franc_sign);
+        }else if(MainActivity.sign.equalsIgnoreCase("NO CURRENCY")){
+            iv_currency_in.setImageResource(R.drawable.no_currency);
         }
 
         lv_in_statement=(ListView)findViewById(R.id.lv_in_statement);

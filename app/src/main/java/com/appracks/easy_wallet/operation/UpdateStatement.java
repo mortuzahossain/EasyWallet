@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -50,6 +51,7 @@ public class UpdateStatement extends AppCompatActivity {
         db_manager=DB_Manager.getInstance(this);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tv_date=(TextView)findViewById(R.id.tv_date);
         tv_inex_way=(TextView)findViewById(R.id.tv_inex_way);
         dt=new DateOperation();
@@ -60,7 +62,6 @@ public class UpdateStatement extends AppCompatActivity {
         month = Integer.valueOf(dt.getMonth(sd.getDate()))-1;
         day = Integer.valueOf(dt.getDay(sd.getDate()));
         setDate(year, month + 1, day);
-        showBannerAds();
     }
     private void setInputLayout(){
         spn_in_ex_cat=(Spinner)findViewById(R.id.spn_in_ex_cat);
@@ -194,37 +195,13 @@ public class UpdateStatement extends AppCompatActivity {
         }
         return null;
     }
-    public void showBannerAds(){
-        final AdView mAdView = (AdView) findViewById(R.id.adView);
-        final AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
-
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdOpened() {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-            }
-
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                super.onAdFailedToLoad(errorCode);
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                super.onAdLeftApplication();
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

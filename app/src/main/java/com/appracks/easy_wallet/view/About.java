@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.appracks.easy_wallet.R;
@@ -16,6 +17,7 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         setSupportActionBar((Toolbar) findViewById(R.id.toolBar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     public void see_more(View v){
         Uri uri = Uri.parse("http://appracks.com/");
@@ -33,5 +35,14 @@ public class About extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
         finish();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -201,6 +201,16 @@ public class MainActivity extends AppCompatActivity {
             iv_currency_7.setImageResource(R.drawable.franc_sign);
             iv_currency_8.setImageResource(R.drawable.franc_sign);
             iv_currency_9.setImageResource(R.drawable.franc_sign);
+        }else if(sign.equalsIgnoreCase("NO CURRENCY")){
+            iv_currency_1.setImageResource(R.drawable.no_currency);
+            iv_currency_2.setImageResource(R.drawable.no_currency);
+            iv_currency_3.setImageResource(R.drawable.no_currency);
+            iv_currency_4.setImageResource(R.drawable.no_currency);
+            iv_currency_5.setImageResource(R.drawable.no_currency);
+            iv_currency_6.setImageResource(R.drawable.no_currency);
+            iv_currency_7.setImageResource(R.drawable.no_currency);
+            iv_currency_8.setImageResource(R.drawable.no_currency);
+            iv_currency_9.setImageResource(R.drawable.no_currency);
         }
 
     }

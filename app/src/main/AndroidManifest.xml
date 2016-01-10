@@ -106,14 +106,18 @@
 
         <activity
             android:name=".view.Setting"
-            android:label="@string/title_activity_setting" >
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_setting">
+
         </activity>
         <activity
             android:name=".view.About"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_about" >
         </activity>
         <activity
             android:name=".operation.PasswordRecovery"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_password_recovery" >
         </activity>
     </application>

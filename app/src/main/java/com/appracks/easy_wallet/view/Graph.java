@@ -67,6 +67,9 @@ public class Graph extends AppCompatActivity {
         barChart=(BarChart)findViewById(R.id.barchart);
         double[] summary=dbManager.getSummery();
         tv_current_balance.setText(String.valueOf(summary[8]));
+        if(summary[8]<0){
+            tv_current_balance.setTextColor(Color.RED);
+        }
         spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
         String[] list=getResources().getStringArray(R.array.spinner_filter_category);
        // spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART: INCOME"}));

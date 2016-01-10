@@ -1,11 +1,13 @@
 package com.appracks.easy_wallet.view;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -15,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -38,7 +39,7 @@ public class Setting extends AppCompatActivity {
     private String question;
     LinearLayout lay_currency;
     ImageButton btn_currency_lay;
-    RadioButton rb_1,rb_2,rb_3,rb_4,rb_5,rb_6,rb_7,rb_8,rb_9;
+    RadioButton rb_0,rb_1,rb_2,rb_3,rb_4,rb_5,rb_6,rb_7,rb_8,rb_9;
     TextView tv_currency;
 
     @Override
@@ -47,8 +48,10 @@ public class Setting extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dbManager=DB_Manager.getInstance(this);
 
+        rb_0=(RadioButton)findViewById(R.id.rb_0);
         rb_1=(RadioButton)findViewById(R.id.rb_1);
         rb_2=(RadioButton)findViewById(R.id.rb_2);
         rb_3=(RadioButton)findViewById(R.id.rb_3);
@@ -58,6 +61,13 @@ public class Setting extends AppCompatActivity {
         rb_7=(RadioButton)findViewById(R.id.rb_7);
         rb_8=(RadioButton)findViewById(R.id.rb_8);
         rb_9=(RadioButton)findViewById(R.id.rb_9);
+        rb_0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setAllRBUnChecked();
+                rb_0.setChecked(true);
+            }
+        });
         rb_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +149,8 @@ public class Setting extends AppCompatActivity {
             rb_8.setChecked(true);
         }else if (rb_9.getText().toString().equalsIgnoreCase(dbManager.getCurrency())){
             rb_9.setChecked(true);
+        }else if (rb_0.getText().toString().equalsIgnoreCase(dbManager.getCurrency())){
+            rb_0.setChecked(true);
         }
 
         tv_currency=(TextView)findViewById(R.id.tv_currency);
@@ -288,6 +300,9 @@ public class Setting extends AppCompatActivity {
                 }else if(rb_9.isChecked()){
                     tv_currency.setText("FRANC");
                     dbManager.setCurrency("FRANC");
+                }else if(rb_0.isChecked()){
+                    tv_currency.setText("NO CURRENCY");
+                    dbManager.setCurrency("NO CURRENCY");
                 }
 
                 lay_currency.setVisibility(View.GONE);
@@ -297,6 +312,7 @@ public class Setting extends AppCompatActivity {
 
     }
     private void setAllRBUnChecked(){
+        rb_0.setChecked(false);
         rb_1.setChecked(false);
         rb_2.setChecked(false);
         rb_3.setChecked(false);
@@ -313,5 +329,14 @@ public class Setting extends AppCompatActivity {
         startActivity(new Intent(Setting.this, MainActivity.class));
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
         finish();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
