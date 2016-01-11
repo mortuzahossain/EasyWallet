@@ -5,16 +5,21 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.appracks.easy_wallet.data_object.BarDatas;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 /**
@@ -22,8 +27,8 @@ import java.util.ArrayList;
  */
 public class DB_Manager extends SQLiteOpenHelper {
     private static DB_Manager managerInstance;
-    private static final String DB_NAME = "easy_wallet";
-    private static String DB_PATH;
+    public static final String DB_NAME = "easy_wallet";
+    public static String DB_PATH;
     private SQLiteDatabase database;
     private Context context;
 

@@ -8,12 +8,21 @@
         android:icon="@drawable/ic_setting_dark"
         android:orderInCategory="100"
         app:showAsAction="always" />
+    <item android:id="@+id/mi_backup"
+        android:title="BACKUP DATABASE"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/mi_restore"
+        android:title="RESTORE DATABASE"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
     <item android:id="@+id/mi_about"
-        android:title="About app"
+        android:title="ABOUT EASY WALLET"
         android:orderInCategory="100"
         app:showAsAction="never" />
     <item android:id="@+id/mi_share"
-        android:title="Share app"
+        android:title="SHARE EASY WALLET"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
 </menu>

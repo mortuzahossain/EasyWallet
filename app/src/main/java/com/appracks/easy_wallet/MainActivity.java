@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appracks.easy_wallet.database.DB_BackupRestore;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.operation.AddStatement;
 import com.appracks.easy_wallet.operation.PasswordRecovery;
@@ -99,7 +100,16 @@ public class MainActivity extends AppCompatActivity {
                 .setLabel(getString(R.string.app_name))
                 .build());
     }
-
+    public void add_in_statement(View v){
+        startActivity(new Intent(MainActivity.this, AddStatement.class).putExtra("from", "main"));
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        finish();
+    }
+    public void add_ex_statement(View v){
+        startActivity(new Intent(MainActivity.this, AddStatement.class).putExtra("from", "exFromMain"));
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        finish();
+    }
     private void setCurrencyIcon(){
         iv_currency_1=(ImageView)findViewById(R.id.iv_currency_1);
         iv_currency_2=(ImageView)findViewById(R.id.iv_currency_2);
@@ -437,6 +447,14 @@ public class MainActivity extends AppCompatActivity {
             intent.setType("text/plain");
             startActivity(intent);
             return true;
+        }else if(id==R.id.mi_backup){
+            DB_BackupRestore d=new DB_BackupRestore(this);
+            d.backupDB();
+        }else if(id==R.id.mi_restore){
+            DB_BackupRestore d=new DB_BackupRestore(this);
+            if(d.restoreDB()){
+                setSummery();
+            }
         }
 
         return super.onOptionsItemSelected(item);

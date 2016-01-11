@@ -294,6 +294,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
+                            android:onClick="add_ex_statement"
                             android:orientation="horizontal">
                             <ImageButton
                                 android:id="@+id/btn_add_ex_statement"
@@ -370,6 +371,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
+                            android:onClick="add_in_statement"
                             android:orientation="horizontal">
                             <ImageButton
                                 android:id="@+id/btn_add_in_statement"
