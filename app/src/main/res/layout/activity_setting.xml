@@ -61,6 +61,32 @@
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
+                android:text="Auto backup: "
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_height="match_parent"
+                tools:ignore="HardcodedText" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="right|center"
+                android:layout_height="match_parent">
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sw_auto_backup" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
                 android:text="Password lock: "
                 android:gravity="center"
                 android:padding="6dp"
@@ -77,99 +103,104 @@
                     android:id="@+id/sw_password" />
             </LinearLayout>
         </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/ly_password"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginLeft="30dp"
-                android:background="@color/colorPrimary"
-                android:layout_marginRight="30dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Set password"
-                    android:textColor="#FFF"
-                    android:layout_gravity="center_horizontal" />
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:hint="Password"
-                    android:gravity="center"
-                    android:background="#FFF"
-                    android:singleLine="true"
-                    android:inputType="textPassword"
-                    android:padding="3dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_margin="5dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Set security question"
-                    android:textColor="#FFF"
-                    android:layout_gravity="center_horizontal" />
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:background="#FFF"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spn_sq" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Set answer"
-                    android:textColor="#FFF"
-                    android:layout_gravity="center_horizontal" />
-                <EditText
-                    android:id="@+id/et_sq_ans"
-                    android:layout_width="match_parent"
-                    android:hint="Answer"
-                    android:gravity="center"
-                    android:background="#FFF"
-                    android:padding="3dp"
-                    android:singleLine="true"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_margin="5dp"
-                    android:layout_height="wrap_content" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/btn_setPassword"
-                        android:layout_width="wrap_content"
-                        android:text="Save"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:textColor="#FFF"
-                    android:text="If you forget your password, security question can help you to recover your password."
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </ScrollView>
+
 
 
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/ly_password"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Set password"
+            android:textColor="#FFF"
+            android:layout_gravity="center_horizontal" />
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:hint="Password"
+            android:gravity="center"
+            android:background="#FFF"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:padding="3dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Set security question"
+            android:textColor="#FFF"
+            android:layout_gravity="center_horizontal" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:background="#FFF"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spn_sq" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Set answer"
+            android:textColor="#FFF"
+            android:layout_gravity="center_horizontal" />
+        <EditText
+            android:id="@+id/et_sq_ans"
+            android:layout_width="match_parent"
+            android:hint="Answer"
+            android:gravity="center"
+            android:background="#FFF"
+            android:padding="3dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_password_cancel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="Cancel"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_setPassword"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="Save"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textColor="#FFF"
+            android:text="If you forget your password, security question can help you to recover your password."
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/lay_currency"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:padding="10dp"
         android:visibility="visible"
         android:orientation="vertical"

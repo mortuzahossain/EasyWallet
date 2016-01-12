@@ -157,4 +157,68 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay_add_cat"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="::: Add category :::"
+            android:textColor="#FFF"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_add_category"
+                android:hint="Category name"
+                android:textColorHint="#e7e7e7"
+                android:textColor="#fff"
+                android:background="#11402f"
+                android:padding="6dp"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:layout_height="40dp" />
+            <Spinner
+                android:id="@+id/spn_cat_type"
+                android:layout_width="0dp"
+                android:popupBackground="#11402f"
+                android:layout_marginLeft="5dp"
+                android:background="#11402f"
+                android:layout_weight="1"
+                android:layout_height="40dp"></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:onClick="btn_add_cat_cancel"
+                android:textColor="#000"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Save"
+                android:onClick="btn_add_cat"
+                android:textColor="#000"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

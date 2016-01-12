@@ -27,9 +27,6 @@ import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import com.appracks.easy_wallet.view.Expense;
 import com.appracks.easy_wallet.view.Income;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class UpdateStatement extends AppCompatActivity {
 
@@ -67,10 +64,10 @@ public class UpdateStatement extends AppCompatActivity {
         spn_in_ex_cat=(Spinner)findViewById(R.id.spn_in_ex_cat);
         String[] catList;
         if(from==0){
-            catList=getResources().getStringArray(R.array.income_category);
+            catList=db_manager.getAllCategory("in");
             tv_inex_way.setText("Income source:");
         }else{
-            catList=getResources().getStringArray(R.array.expense_category);
+            catList=db_manager.getAllCategory("ex");
             tv_inex_way.setText("Expense way:");
         }
         spn_in_ex_cat.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, catList));

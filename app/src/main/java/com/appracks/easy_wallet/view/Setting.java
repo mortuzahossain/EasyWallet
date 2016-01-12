@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -28,10 +29,10 @@ import com.appracks.easy_wallet.database.DB_Manager;
 
 public class Setting extends AppCompatActivity {
 
-    private Switch switch_pass_on;
+    private Switch switch_pass_on,sw_auto_backup;
     private DB_Manager dbManager;
     private EditText et_password,et_answer;
-    private Button btn_setPassword,btn_setCurrency;
+    private Button btn_setPassword,btn_setCurrency,btn_password_cancel;
     private LinearLayout ly_password;
     private Spinner spn_sq;
     private ArrayAdapter<CharSequence> adapter;
@@ -157,8 +158,19 @@ public class Setting extends AppCompatActivity {
         tv_currency.setText(dbManager.getCurrency());
         lay_currency=(LinearLayout)findViewById(R.id.lay_currency);
         lay_currency.setVisibility(View.GONE);
+
+        btn_password_cancel=(Button)findViewById(R.id.btn_password_cancel);
+        btn_password_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ly_password.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_down_out));
+                ly_password.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Password lock turned off", Toast.LENGTH_LONG).show();
+                switch_pass_on.setChecked(false);
+            }
+        });
         btn_currency_lay=(ImageButton)findViewById(R.id.btn_currency_lay);
-        qList=new String[]{"What's your nick name?","What's your gf name?","What's your bf name?","What's your favourite book?"};
+        qList=getResources().getStringArray(R.array.security_question);
         spn_sq=(Spinner) findViewById(R.id.spn_sq);
         et_answer=(EditText)findViewById(R.id.et_sq_ans);
         adapter=new ArrayAdapter<CharSequence>(this,android.R.layout.simple_spinner_item, qList);
@@ -177,6 +189,7 @@ public class Setting extends AppCompatActivity {
             }
         });
         switch_pass_on=(Switch)findViewById(R.id.sw_password);
+        sw_auto_backup=(Switch)findViewById(R.id.sw_auto_backup);
         et_password=(EditText)findViewById(R.id.et_password);
         btn_setPassword=(Button)findViewById(R.id.btn_setPassword);
         btn_setCurrency=(Button)findViewById(R.id.btn_setCurrency);
@@ -189,10 +202,15 @@ public class Setting extends AppCompatActivity {
         }else{
             switch_pass_on.setChecked(false);
         }
-        switch_pass_on.setOnClickListener(new View.OnClickListener() {
+        if(dbManager.getIsAutoBackupOn()){
+            sw_auto_backup.setChecked(true);
+        }else{
+            sw_auto_backup.setChecked(false);
+        }
+        switch_pass_on.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (switch_pass_on.isChecked()) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
                     ly_password.setVisibility(View.VISIBLE);
                     lay_currency.setVisibility(View.GONE);
                     ly_password.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_up_in));
@@ -205,6 +223,21 @@ public class Setting extends AppCompatActivity {
                 }
             }
         });
+        sw_auto_backup.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if(dbManager.setIsAutoBackupOn(1)){
+                        Toast.makeText(getApplicationContext(), "Auto backup turned on", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    if(dbManager.setIsAutoBackupOn(0)){
+                        Toast.makeText(getApplicationContext(), "Auto backup turned off", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
         et_answer.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -263,7 +296,6 @@ public class Setting extends AppCompatActivity {
                 lay_currency.setVisibility(View.VISIBLE);
                 lay_currency.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_up_in));
                 ly_password.setVisibility(View.GONE);
-                ly_password.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_down_out));
                 if(dbManager.getIsPasswordOn()){}else{
                     switch_pass_on.setChecked(false);
                 }

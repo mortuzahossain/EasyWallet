@@ -17,7 +17,7 @@ public class DB_BackupRestore {
     public DB_BackupRestore(Context context){
         this.context = context;
     }
-    public void backupDB(){
+    public void backupDB(boolean b){
         try {
             String currentDBPath = "//data//"+ context.getPackageName() +"//databases//"+DB_Manager.DB_NAME;
             String backupDBPath = "EasyWallet/"+DB_Manager.DB_NAME;
@@ -37,7 +37,9 @@ public class DB_BackupRestore {
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
-                Toast.makeText(context, "Database backup succesfully to:\n"+backupDB.toString(), Toast.LENGTH_LONG).show();
+                if(b){
+                    Toast.makeText(context, "Database backup succesfully to:\n"+backupDB.toString(), Toast.LENGTH_LONG).show();
+                }
             }
         } catch (Exception e) {
             Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();

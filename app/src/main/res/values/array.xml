@@ -11,27 +11,11 @@
         <item>All statement</item>
         <item>Date wise</item>
     </string-array>
-    <string-array name="income_category">
-        <item>Salary</item>
-        <item>Part-time work</item>
-        <item>Personal saving</item>
-        <item>Rents &amp; royalties</item>
-    </string-array>
-    <string-array name="expense_category">
-        <item>Automobile</item>
-        <item>Entertainment</item>
-        <item>Family</item>
-        <item>Food</item>
-        <item>Gasoline</item>
-        <item>Gift</item>
-        <item>Donation</item>
-        <item>Groceries</item>
-        <item>Health</item>
-        <item>Housing</item>
-        <item>Medical</item>
-        <item>Mobile recharge</item>
-        <item>Shoping</item>
-        <item>Utilities</item>
-        <item>Others</item>
+    <string-array name="security_question">
+        <item>What\'s your nick name?</item>
+        <item>What\'s your favourite book?</item>
+        <item>What\'s your favourite author?</item>
+        <item>What\'s your favourite poet?</item>
+        <item>What\'s your best friend name?</item>
     </string-array>
 </resources>

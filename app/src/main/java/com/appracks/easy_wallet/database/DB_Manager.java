@@ -76,6 +76,7 @@ public class DB_Manager extends SQLiteOpenHelper {
         }
         return null;
     }
+
     public String getQuestionAnswer(){
         Cursor cursor = this.database.query("setting", null,"value=?", new String[]{"777"}, null, null, null);
         if (cursor != null && cursor.getCount() > 0) {
@@ -98,6 +99,18 @@ public class DB_Manager extends SQLiteOpenHelper {
         }
         return false;
     }
+    public boolean getIsAutoBackupOn(){
+        Cursor cursor = this.database.query("setting", null, "name=?", new String[]{"isAutoBackupOn"}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int id = cursor.getInt(cursor.getColumnIndex("value"));
+            cursor.close();
+            if(id==1){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean setIsPasswordOn(int value){
         ContentValues values;
@@ -105,6 +118,18 @@ public class DB_Manager extends SQLiteOpenHelper {
         values.put("value", value);
 
         long inserted=this.database.update("setting", values, "name=?", new String[]{"isPasswordOn"});
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean setIsAutoBackupOn(int value){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("value", value);
+
+        long inserted=this.database.update("setting", values, "name=?", new String[]{"isAutoBackupOn"});
         if(inserted>0){
             return true;
         }else {
@@ -315,6 +340,35 @@ public class DB_Manager extends SQLiteOpenHelper {
         }
         cursor.close();
         return 0.0;
+    }
+    public String[] getAllCategory(String type){
+        String[] list;
+        Cursor cursor;
+        cursor = this.database.query("category", new String[]{"cat_name"},"type=?", new String[]{type}, null, null, "cat_name ASC");
+        int size=cursor.getCount();
+        list=new String[size];
+        if (cursor != null && size > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < size; i++) {
+                list[i]= cursor.getString(cursor.getColumnIndex("cat_name"));
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return list;
+    }
+    public boolean addCategory(String value,String type){
+        ContentValues values;
+        values = new ContentValues();
+        values.put("cat_name", value);
+        values.put("type",type);
+
+        long inserted=this.database.insert("category", null, values);
+        if(inserted>0){
+            return true;
+        }else {
+            return false;
+        }
     }
     public ArrayList<StatementData> getAllStatement(String type){
         ArrayList<StatementData> list=new ArrayList<StatementData>();

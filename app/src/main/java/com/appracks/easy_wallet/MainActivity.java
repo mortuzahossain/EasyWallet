@@ -36,7 +36,8 @@ import com.appracks.easy_wallet.view.Setting;
 import com.google.android.gms.analytics.HitBuilders;
 
 public class MainActivity extends AppCompatActivity {
-
+    DB_BackupRestore d;
+    private boolean isAutoBackup=false;
     public static boolean alrearyChecked=false;
     public static String sign="";
     DrawerLayout myDrawer;
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         dbManager=DB_Manager.getInstance(this);
+        d=new DB_BackupRestore(this);
         sign=dbManager.getCurrency();
+        isAutoBackup=dbManager.getIsAutoBackupOn();
         tv_balance=(TextView)findViewById(R.id.tv_balance);
         tv_nav_balance=(TextView)findViewById(R.id.tv_current_balance);
         tv_in_current_week=(TextView)findViewById(R.id.tv_in_current_week);
@@ -410,6 +413,9 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setIcon(R.mipmap.ic_launcher);
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                if(isAutoBackup){
+                    d.backupDB(false);
+                }
                 finish();
                 System.exit(0);
             }
@@ -448,10 +454,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }else if(id==R.id.mi_backup){
-            DB_BackupRestore d=new DB_BackupRestore(this);
-            d.backupDB();
+            d.backupDB(true);
         }else if(id==R.id.mi_restore){
-            DB_BackupRestore d=new DB_BackupRestore(this);
             if(d.restoreDB()){
                 setSummery();
             }
@@ -460,3 +464,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+/*
+Easy Wallet created by Habibur Rahman
+Mobile: 8801726628182
+ */
