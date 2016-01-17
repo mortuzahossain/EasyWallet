@@ -99,7 +99,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="5"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/spinner_bac2"
+                        android:background="@drawable/spinner_bac"
                         android:layout_marginBottom="5dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="30dp">
@@ -182,7 +182,7 @@
             <EditText
                 android:id="@+id/et_add_category"
                 android:hint="Category name"
-                android:textColorHint="#e7e7e7"
+                android:textColorHint="#9b9b9b"
                 android:textColor="#fff"
                 android:background="#11402f"
                 android:padding="6dp"
@@ -194,9 +194,9 @@
             <Spinner
                 android:id="@+id/spn_cat_type"
                 android:layout_width="0dp"
-                android:popupBackground="#11402f"
+                android:popupBackground="#123e2c"
                 android:layout_marginLeft="5dp"
-                android:background="#11402f"
+                android:background="@drawable/spn_type_bac"
                 android:layout_weight="1"
                 android:layout_height="40dp"></Spinner>
         </LinearLayout>

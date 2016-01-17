@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -25,24 +27,26 @@ import android.widget.Toast;
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.adapter.CustomInterfaceAdapter;
+import com.appracks.easy_wallet.adapter.NDSpinner;
 import com.appracks.easy_wallet.adapter.StatementViewAdapter;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
 import com.appracks.easy_wallet.operation.AddStatement;
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
 public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
 
-    private ListView lv_in_statement;
+    private ListView lv_in_statement;//lv_catListItems;
     StatementViewAdapter statementViewAdapter;
+   // CategoryNameViewAdapter categoryNameViewAdapter;
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    private TextView tv_category;
+    private TextView tv_category,tv_date_from,tv_date_to;
     Toolbar toolbar;
     DB_Manager dbManager;
     DateOperation dt;
@@ -52,6 +56,10 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
     ImageView iv_currency_in;
     private ImageButton btn_add_statement;
     boolean isFirst=true;
+    LinearLayout lay_category_wise;
+    Spinner spn_filter_category_list;
+    NDSpinner spn_filter_category;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,7 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         dbManager=DB_Manager.getInstance(this);
         dt=new DateOperation();
 
+        lay_category_wise=(LinearLayout)findViewById(R.id.lay_category_wise);
         iv_currency_in=(ImageView)findViewById(R.id.iv_currency_in);
         if(MainActivity.sign.equalsIgnoreCase("DOLLAR")){
             iv_currency_in.setImageResource(R.drawable.dollar_sign);
@@ -85,7 +94,11 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             iv_currency_in.setImageResource(R.drawable.no_currency);
         }
 
+        //lv_catListItems=(ListView)findViewById(R.id.lv_catListItems);
         lv_in_statement=(ListView)findViewById(R.id.lv_in_statement);
+        tv_date_from=(TextView)findViewById(R.id.tv_date_from);
+        tv_date_to=(TextView)findViewById(R.id.tv_date_to);
+
         tv_category=(TextView)findViewById(R.id.tv_category);
         tv_nav_balance=(TextView)findViewById(R.id.tv_current_balance);
         tv_filter_balance=(TextView)findViewById(R.id.tv_filter_balance);
@@ -99,7 +112,10 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             }
         });
         setNavMenu();
-        final Spinner spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
+        spn_filter_category_list=(Spinner)findViewById(R.id.spn_filter_category_list);
+        spn_filter_category_list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dbManager.getAllCategory("in")));
+
+        spn_filter_category=(com.appracks.easy_wallet.adapter.NDSpinner)findViewById(R.id.spn_filter_category);
         spn_filter_category.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.spinner_filter_category)));
         spn_filter_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -113,10 +129,20 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
                 spn_filter_category.setSelection(0, true);
             }
         });
-        int i=getIntent().getIntExtra("cat_type",99);
+
+
+        i=getIntent().getIntExtra("cat_type",99);
         setStatementList(i);
         spn_filter_category.setSelection(i, true);
         showBannerAds();
+    }
+    public void btn_setDateFrom(View v){
+        //noinspection deprecation
+        showDialog(3);
+    }
+    public void btn_setDateTo(View v){
+        //noinspection deprecation
+        showDialog(4);
     }
     private void setStatementList(int cat){
         double[] summery=dbManager.getSummery();
@@ -151,6 +177,11 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         }else if(cat==4){//4 for date wise
             //noinspection deprecation
             showDialog(1);
+        }else if(cat==5){//5 for category wise
+            tv_date_from.setText(dt.getCurrentDate());
+            tv_date_to.setText(dt.getCurrentDate());
+            lay_category_wise.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_up_in));
+            lay_category_wise.setVisibility(View.VISIBLE);
         }
         tv_nav_balance.setText(String.valueOf(summery[8]));
         if(summery[8]<0){
@@ -225,6 +256,10 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             return new DatePickerDialog(this, firstDateListener, Integer.valueOf(dt.getCurrentYear()), Integer.valueOf(dt.getCurrentMonth())-1, Integer.valueOf(dt.getCurrentDay()));
         }else if (id == 2) {
             return new DatePickerDialog(this, secondDateListener, Integer.valueOf(dt.getCurrentYear()), Integer.valueOf(dt.getCurrentMonth())-1, Integer.valueOf(dt.getCurrentDay()));
+        }else if (id == 3) {
+            return new DatePickerDialog(this, dateFrom, Integer.valueOf(dt.getCurrentYear()), Integer.valueOf(dt.getCurrentMonth())-1, Integer.valueOf(dt.getCurrentDay()));
+        }else if (id == 4) {
+            return new DatePickerDialog(this, dateTo, Integer.valueOf(dt.getCurrentYear()), Integer.valueOf(dt.getCurrentMonth())-1, Integer.valueOf(dt.getCurrentDay()));
         }
         return null;
     }
@@ -244,11 +279,35 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
         }
     };
 
+    private DatePickerDialog.OnDateSetListener dateFrom = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int year, int month, int day) {
+            tv_date_from.setText(dt.getDateFromRaw(year, month+1, day));
+        }
+    };
+    private DatePickerDialog.OnDateSetListener dateTo = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int year, int month, int day) {
+            tv_date_to.setText(dt.getDateFromRaw(year, month+1, day));
+        }
+    };
+
     @Override
     public void adapterClick() {
         overridePendingTransition(R.anim.push_up_in, R.anim.style_static);
         finish();
     }
+
+    @Override
+    public void addCat(String cName) {
+
+    }
+
+    @Override
+    public void removeCat(String cName) {
+
+    }
+
     public void showBannerAds(){
         final LinearLayout ll=(LinearLayout)findViewById(R.id.full_layout);
         final LinearLayout la=(LinearLayout)findViewById(R.id.amount_lay);
@@ -267,13 +326,13 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                if(isFirst){
+                if (isFirst) {
                     ll.setPadding(0, 0, 0, 200);
                     mAdView.loadAd(adRequest);
-                    isFirst=false;
+                    isFirst = false;
                     mAdView.setVisibility(View.VISIBLE);
-                }else{
-                    ll.setPadding(0, 0, 0, la.getHeight()+mAdView.getHeight());
+                } else {
+                    ll.setPadding(0, 0, 0, la.getHeight() + mAdView.getHeight());
                 }
             }
 
@@ -293,4 +352,21 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
             }
         });
     }
+    public void btn__cancel(View v){
+        lay_category_wise.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_down_out));
+        lay_category_wise.setVisibility(View.GONE);
+        setStatementList(i);
+        spn_filter_category.setSelection(i, true);
+    }
+    public void btn_setFilterOk(View v){
+            list=dbManager.getBetweenDateStatementWithCat(dt.getDateOrder(tv_date_from.getText().toString()),dt.getDateOrder(tv_date_to.getText().toString()),"in",spn_filter_category_list.getSelectedItem().toString());
+            statementViewAdapter=new StatementViewAdapter(this,list,StatementViewAdapter.incomeAdapter);
+            statementViewAdapter.notifyDataSetChanged();
+            lv_in_statement.setAdapter(statementViewAdapter);
+            tv_category.setText("::: Income from " + tv_date_from.getText().toString() + " to " + tv_date_to.getText().toString() + ":::");
+            tv_filter_balance.setText(String.valueOf(dbManager.getBetweenDateAmountWithCat(dt.getDateOrder(tv_date_from.getText().toString()),dt.getDateOrder(tv_date_to.getText().toString()),"in",spn_filter_category_list.getSelectedItem().toString())));
+        lay_category_wise.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_down_out));
+        lay_category_wise.setVisibility(View.GONE);
+    }
+
 }

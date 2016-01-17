@@ -18,5 +18,10 @@
     <color name="c_g">#058111</color>
 
     <color name="color_summary_cat_normal">#16A085</color>
-    <color name="color_summary_cat_pressed">#106653</color>
+    <color name="color_summary_cat_pressed">#10806c</color>
+
+    <color name="color_in_normal">#018A00</color>
+    <color name="color_in_pressed">#015600</color>
+    <color name="color_ex_normal">#FF3300</color>
+    <color name="color_ex_pressed">#ad2800</color>
 </resources>

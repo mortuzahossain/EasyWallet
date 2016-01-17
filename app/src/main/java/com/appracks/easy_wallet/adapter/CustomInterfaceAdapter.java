@@ -5,4 +5,6 @@ package com.appracks.easy_wallet.adapter;
  */
 public interface CustomInterfaceAdapter {
     public void adapterClick();
+    public void addCat(String cName);
+    public void removeCat(String cName);
 }

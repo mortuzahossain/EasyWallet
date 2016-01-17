@@ -20,10 +20,11 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <Spinner
+            <com.appracks.easy_wallet.adapter.NDSpinner
                 android:id="@+id/spn_filter_category"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:popupBackground="#157b62"
+                android:layout_height="40dp" />
         </android.support.v7.widget.Toolbar>
 
         <RelativeLayout
@@ -158,6 +159,122 @@
                     ads:adSize="SMART_BANNER"
                     ads:adUnitId="@string/banner_ad_unit_id">
                 </com.google.android.gms.ads.AdView>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lay_category_wise"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorPrimary"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:text="To: "
+                        android:layout_marginRight="5dp"
+                        android:padding="8dp"
+                        android:textColor="#FFF"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/tv_date_from"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:text="12-12-2015"
+                        android:gravity="center"
+                        android:editable="false"
+                        android:background="#123e2c"
+                        android:padding="8dp"
+                        android:textColor="#FFF"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="match_parent" />
+                    <ImageButton
+                        android:layout_width="50dp"
+                        android:padding="0dp"
+                        android:background="#123e2c"
+                        android:onClick="btn_setDateFrom"
+                        android:src="@drawable/ic_date_picker"
+                        android:layout_height="40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:text="From:"
+                        android:layout_marginRight="5dp"
+                        android:padding="8dp"
+                        android:textColor="#FFF"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/tv_date_to"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:text="12-12-2016"
+                        android:gravity="center"
+                        android:background="#123e2c"
+                        android:padding="8dp"
+                        android:editable="false"
+                        android:textColor="#FFF"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="match_parent" />
+                    <ImageButton
+                        android:layout_width="50dp"
+                        android:padding="0dp"
+                        android:background="#123e2c"
+                        android:onClick="btn_setDateTo"
+                        android:src="@drawable/ic_date_picker"
+                        android:layout_height="40dp" />
+                </LinearLayout>
+                <Spinner
+                    android:id="@+id/spn_filter_category_list"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:popupBackground="#123e2c"
+                    android:background="@drawable/spn_cat_bac"
+                    android:layout_height="45dp">
+
+                </Spinner>
+                <!--<ListView
+                    android:id="@+id/lv_catListItems"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:background="#123e2c"
+                    android:layout_height="200dp"></ListView>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Cancel"
+                        android:onClick="btn__cancel"
+                        android:textColor="#fff"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="OK"
+                        android:onClick="btn_setFilterOk"
+                        android:textColor="#fff"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 

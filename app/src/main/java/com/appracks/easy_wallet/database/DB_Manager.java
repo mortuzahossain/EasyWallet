@@ -341,6 +341,22 @@ public class DB_Manager extends SQLiteOpenHelper {
         cursor.close();
         return 0.0;
     }
+    public double getBetweenDateAmountWithCat(String dateFrom,String dateTo,String type,String cat){
+        Cursor cursor;
+        if(type.equalsIgnoreCase("in")) {
+            cursor = this.database.query(INCOME_TABLE, new String[]{"SUM(amount) as bda"}, DATEORDER_FIELD + ">="+dateFrom+" AND "+DATEORDER_FIELD+"<="+dateTo+" AND "+SOURCE_WAY_FIELD+"=?", new String[]{cat}, null, null, null);
+        }else{
+            cursor = this.database.query(EXPENSE_TABLE, new String[]{"SUM(amount) as bda"}, DATEORDER_FIELD + ">="+dateFrom+" AND "+DATEORDER_FIELD+"<="+dateTo+" AND "+SOURCE_WAY_FIELD+"=?", new String[]{cat}, null, null, null);
+        }
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            double amount= round(cursor.getDouble(cursor.getColumnIndex("bda")), 2);
+            cursor.close();
+            return amount;
+        }
+        cursor.close();
+        return 0.0;
+    }
     public String[] getAllCategory(String type){
         String[] list;
         Cursor cursor;
@@ -361,7 +377,7 @@ public class DB_Manager extends SQLiteOpenHelper {
         ContentValues values;
         values = new ContentValues();
         values.put("cat_name", value);
-        values.put("type",type);
+        values.put("type", type);
 
         long inserted=this.database.insert("category", null, values);
         if(inserted>0){
@@ -463,6 +479,45 @@ public class DB_Manager extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        return list;
+    }
+    public ArrayList<StatementData> getBetweenDateStatementWithCat(String do_from,String do_to,String type,String cat){
+        /*String[] cList=new String[catList.size()];
+        String catQS="";
+        for(int i=0;i<catList.size();i++){
+            cList[i]=catList.get(i);
+            catQS=catQS+" "+SOURCE_WAY_FIELD+" ="+catList.get(i)+" OR";
+        }
+        catQS=catQS.substring(0,catQS.length()-2);
+        Log.e("query",catQS);
+        if(type.equalsIgnoreCase("in")){
+            cursor=this.database.rawQuery("SELECT * FROM "+INCOME_TABLE+" WHERE "+
+                    DATEORDER_FIELD + ">="+do_from+" AND "+DATEORDER_FIELD+"<="+do_to+" AND"+catQS,null);
+        }*/
+
+        ArrayList<StatementData> list=new ArrayList<StatementData>();
+        Cursor cursor;
+            if(type.equalsIgnoreCase("in")){
+                cursor = this.database.query(INCOME_TABLE, null,DATEORDER_FIELD + ">="+do_from+" AND "+DATEORDER_FIELD+"<="+do_to+" AND "+SOURCE_WAY_FIELD+"=?", new String[]{cat}, null, null, DATEORDER_FIELD+" DESC");
+            }
+            else{
+                cursor = this.database.query(EXPENSE_TABLE, null,DATEORDER_FIELD + ">="+do_from+" AND "+DATEORDER_FIELD+"<="+do_to+" AND "+SOURCE_WAY_FIELD+"=?", new String[]{cat}, null, null, DATEORDER_FIELD+" DESC");
+            }
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                for (int j = 0; j < cursor.getCount(); j++) {
+                    int id = cursor.getInt(cursor.getColumnIndex(ID_FIELD));
+                    String date = cursor.getString(cursor.getColumnIndex(DATE_FIELD));
+                    String source_way = cursor.getString(cursor.getColumnIndex(SOURCE_WAY_FIELD));
+                    String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_FIELD));
+                    double amount = round(cursor.getDouble(cursor.getColumnIndex(AMOUNT_FIELD)),2);
+                    StatementData sd=new StatementData(id,date,source_way,description,amount,type);
+                    list.add(sd);
+                    cursor.moveToNext();
+                }
+            }
+
         cursor.close();
         return list;
     }

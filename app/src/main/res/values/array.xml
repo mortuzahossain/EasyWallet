@@ -10,6 +10,7 @@
         <item>Current year</item>
         <item>All statement</item>
         <item>Date wise</item>
+        <item>Category wise</item>
     </string-array>
     <string-array name="security_question">
         <item>What\'s your nick name?</item>

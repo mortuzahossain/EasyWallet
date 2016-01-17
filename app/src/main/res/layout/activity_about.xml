@@ -55,8 +55,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:textColor="#243aa6"
-                    android:text="about app"
+                    android:textColor="#0489a7"
+                    android:text="Keep your financial Record easily on this Easy wallet app. It’s relay important to keep financial record. Record your income and expense daily.\n
+Looking for Income Tracker?\n
+Looking for Expense Tracker?\n
+Use Easy Wallet app form today and keep your Income and Expense record easily. It is really awesome to use and ensure data security. It is offline based app, No Internet access need to keep Financial Record. \n
+Features of Easy Wallet 1.0 version:\n\n
+:-	Adding, Updating, Deleting Income and Expense statement.\n
+:-	Overview of current week,month,year and also total records.\n
+:-	Filter records by current week,month,year, total, date wise and also category wise.\n
+:-	Graph view with filtering.\n
+:-	Keep database backup automatically and manually.\n
+:-	Use password to protect unauthorized access.\n
+:-	Set your currency (available 20+ currencies ).\n
+:-	Reminder to add Income and expense record on easy wallet.\n"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     tools:ignore="HardcodedText" />
                 <Button

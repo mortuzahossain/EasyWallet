@@ -64,7 +64,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="5"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/spinner_bac2"
+                        android:background="@drawable/spinner_bac"
                         android:layout_marginBottom="5dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="30dp">

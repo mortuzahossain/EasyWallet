@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     ImageButton btn_add_in_statement,btn_add_ex_statement;
+    LinearLayout add_in_statement,add_ex_statement;
     DB_Manager dbManager;
-    private TextView tv_in_current_week,tv_in_current_month,tv_in_current_year,tv_in_total,tv_ex_current_week,tv_ex_current_month,tv_ex_current_year,tv_ex_total,tv_balance,tv_nav_balance;
+    private TextView tv_current_status,tv_in_current_week,tv_in_current_month,tv_in_current_year,tv_in_total,tv_ex_current_week,tv_ex_current_month,tv_ex_current_year,tv_ex_total,tv_balance,tv_nav_balance;
     private AlertDialog.Builder builder;
     ImageView iv_currency_1,iv_currency_2,iv_currency_3,iv_currency_4,iv_currency_5,iv_currency_6,iv_currency_7,iv_currency_8,iv_currency_9;
 
@@ -69,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         tv_ex_current_year=(TextView)findViewById(R.id.tv_ex_current_year);
         tv_in_total=(TextView)findViewById(R.id.tv_in_total);
         tv_ex_total=(TextView)findViewById(R.id.tv_ex_total);
-
+        tv_current_status=(TextView)findViewById(R.id.tv_current_status);
+        add_in_statement=(LinearLayout)findViewById(R.id.add_in_statement);
+        add_ex_statement=(LinearLayout)findViewById(R.id.add_ex_statement);
         if(dbManager.getIsPasswordOn()){
             if(alrearyChecked){}else{
                 setPasswordCheck();
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         btn_add_in_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                add_in_statement.setBackgroundResource(R.color.color_in_pressed);
                 startActivity(new Intent(MainActivity.this, AddStatement.class).putExtra("from", "main"));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         btn_add_ex_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                add_ex_statement.setBackgroundResource(R.color.color_ex_pressed);
                 startActivity(new Intent(MainActivity.this, AddStatement.class).putExtra("from", "exFromMain"));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
@@ -244,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 if (input.getText().toString().trim().equals(dbManager.getPassword())) {
                     Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    alrearyChecked=true;
+                    alrearyChecked = true;
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong password! try again...", Toast.LENGTH_SHORT).show();
                     setPasswordCheck();
@@ -281,8 +286,12 @@ public class MainActivity extends AppCompatActivity {
         if(summery[8]<0){
             tv_balance.setTextColor(Color.RED);
             tv_nav_balance.setTextColor(Color.RED);
+            tv_current_status.setText("NOT GOOD\nYour expense is higher than income. Save money.");
+            tv_current_status.setTextColor(Color.parseColor("#FF3300"));
+        }else{
+            tv_nav_balance.setText(String.valueOf(summery[8]));
+            tv_current_status.setText("GOOD");
         }
-        tv_nav_balance.setText(String.valueOf(summery[8]));
     }
     private void setSummeryClick(){
         LinearLayout ly_current_week_in,ly_current_week_ex,ly_current_month_in,ly_current_month_ex,ly_current_year_in,ly_current_year_ex,ly_total_in,ly_total_ex;

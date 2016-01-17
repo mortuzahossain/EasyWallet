@@ -291,9 +291,11 @@
                             android:textColor="#FFF" />
 
                         <LinearLayout
+                            android:id="@+id/add_ex_statement"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
+                            android:background="@drawable/add_ex_selector"
                             android:onClick="add_ex_statement"
                             android:orientation="horizontal">
                             <ImageButton
@@ -368,9 +370,11 @@
                             android:textColor="#FFF" />
 
                         <LinearLayout
+                            android:id="@+id/add_in_statement"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
+                            android:background="@drawable/add_in_selector"
                             android:onClick="add_in_statement"
                             android:orientation="horizontal">
                             <ImageButton
@@ -383,10 +387,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lay_expense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/balance_layout"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -616,6 +623,33 @@
                             </LinearLayout>
                         </FrameLayout>
                     </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/lay_expense"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimary"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="YOUR CURRENT STATUS"
+                        android:gravity="center"
+                        android:textColor="#FFF"
+                        android:padding="7dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_current_status"
+                        android:layout_width="match_parent"
+                        android:text="GOOD"
+                        android:gravity="center"
+                        android:textColor="#FFF"
+                        android:padding="7dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>

@@ -26,8 +26,9 @@
         <Spinner
             android:id="@+id/spn_filter_category"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/spinner_bac" />
+            android:layout_height="45dp"
+            android:popupBackground="@color/colorPrimary"
+            android:background="@drawable/spn_cat_bac" />
 
         <RelativeLayout
             android:layout_width="match_parent"
