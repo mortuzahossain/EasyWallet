@@ -12,6 +12,13 @@
         <item>Date wise</item>
         <item>Category wise</item>
     </string-array>
+    <string-array name="spinner_filter_category_4graph">
+        <item>Current week</item>
+        <item>Current month</item>
+        <item>Current year</item>
+        <item>All statement</item>
+        <item>Date wise</item>
+    </string-array>
     <string-array name="security_question">
         <item>What\'s your nick name?</item>
         <item>What\'s your favourite book?</item>

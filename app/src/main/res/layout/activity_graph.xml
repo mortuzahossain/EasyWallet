@@ -23,7 +23,7 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <Spinner
+        <com.appracks.easy_wallet.adapter.NDSpinner
             android:id="@+id/spn_filter_category"
             android:layout_width="match_parent"
             android:layout_height="45dp"

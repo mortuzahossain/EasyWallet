@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.appracks.easy_wallet.MainActivity;
 import com.appracks.easy_wallet.R;
+import com.appracks.easy_wallet.adapter.NDSpinner;
 import com.appracks.easy_wallet.data_object.BarDatas;
 import com.appracks.easy_wallet.database.DB_Manager;
 import com.appracks.easy_wallet.dateOperation.DateOperation;
@@ -44,7 +45,7 @@ import java.util.ArrayList;
 public class Graph extends AppCompatActivity {
     DrawerLayout myDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    private Spinner spn_filter_category;
+    private NDSpinner spn_filter_category;
     DB_Manager dbManager;
     private PieChart pieChart;
     private BarChart barChart;
@@ -70,8 +71,8 @@ public class Graph extends AppCompatActivity {
         if(summary[8]<0){
             tv_current_balance.setTextColor(Color.RED);
         }
-        spn_filter_category=(Spinner)findViewById(R.id.spn_filter_category);
-        String[] list=getResources().getStringArray(R.array.spinner_filter_category);
+        spn_filter_category=(com.appracks.easy_wallet.adapter.NDSpinner)findViewById(R.id.spn_filter_category);
+        String[] list=getResources().getStringArray(R.array.spinner_filter_category_4graph);
        // spn_graph_type.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,new String[]{"PIE CHART","BAR CHART: INCOME"}));
         spn_filter_category.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,list));
 //        spn_graph_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -93,7 +94,7 @@ public class Graph extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                setGraph(0,0);
             }
         });
 
@@ -111,7 +112,7 @@ public class Graph extends AppCompatActivity {
                 setPieGraph((float)summary[2],(float)summary[6],"");
             }else if(cat==3){
                 setPieGraph((float)summary[3],(float)summary[7],"");
-            }else{
+            }else if(cat==4){
                 //noinspection deprecation
                 showDialog(1);
             }
@@ -119,9 +120,9 @@ public class Graph extends AppCompatActivity {
             pieChart.setVisibility(View.VISIBLE);
         }else if(type==1){
             if(cat==0){
-                setBarGraph(dbManager.getDateAndAmountBetweenDate(dt.getCurrentDateN7(),dt.getCurrentDate(),"in"),"");
+               // setBarGraph(dbManager.getDateAndAmountBetweenDate(dt.getCurrentDateN7(),dt.getCurrentDate(),"in"),"");
             }else if(cat==1){
-                setBarGraph(dbManager.getDateAndAmountBetweenDate("01-"+dt.getCurrentMonth()+"-"+dt.getCurrentYear(),dt.getCurrentDate(),"in"),"");
+              //  setBarGraph(dbManager.getDateAndAmountBetweenDate("01-"+dt.getCurrentMonth()+"-"+dt.getCurrentYear(),dt.getCurrentDate(),"in"),"");
             }else if(cat==2){
 
             }else if(cat==3){
