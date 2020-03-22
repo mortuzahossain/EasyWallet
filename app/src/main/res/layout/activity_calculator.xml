@@ -507,7 +507,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
-                android:background="@color/list_background_pressed"
+                android:background="@drawable/nav_list_selector"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -535,7 +535,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
-                android:background="@drawable/nav_list_selector"
+                android:background="@color/list_background_pressed"
                 android:orientation="horizontal">
 
                 <ImageView

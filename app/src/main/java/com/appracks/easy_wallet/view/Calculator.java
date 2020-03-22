@@ -111,7 +111,7 @@ public class Calculator extends AppCompatActivity {
                         editText15.setText(Double.toString(m2));
                     }
 
-                } catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -164,7 +164,18 @@ public class Calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(Calculator.this, Graph.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
+        LinearLayout ly_tax_calculator = (LinearLayout) findViewById(R.id.ly_tax_calculator);
+        ly_tax_calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
                 Toast.makeText(getApplicationContext(), "You are here", Toast.LENGTH_LONG).show();
+
             }
         });
     }
