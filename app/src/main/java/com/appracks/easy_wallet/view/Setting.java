@@ -1,7 +1,6 @@
 package com.appracks.easy_wallet.view;
 
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,7 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appracks.easy_wallet.MainActivity;
+import com.appracks.easy_wallet.OverViewActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.database.DB_Manager;
 
@@ -214,7 +213,7 @@ public class Setting extends AppCompatActivity {
                     ly_password.setVisibility(View.VISIBLE);
                     lay_currency.setVisibility(View.GONE);
                     ly_password.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_up_in));
-                    MainActivity.alrearyChecked=true;
+                    OverViewActivity.alrearyChecked=true;
                 } else {
                     ly_password.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_down_out));
                     ly_password.setVisibility(View.GONE);
@@ -358,7 +357,7 @@ public class Setting extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(Setting.this, MainActivity.class));
+        startActivity(new Intent(Setting.this, OverViewActivity.class));
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
         finish();
     }

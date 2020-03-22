@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.appracks.easy_wallet.MainActivity;
+import com.appracks.easy_wallet.OverViewActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.database.DB_Manager;
 
@@ -58,7 +58,7 @@ public class PasswordRecovery extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(PasswordRecovery.this, MainActivity.class));
+        startActivity(new Intent(PasswordRecovery.this, OverViewActivity.class));
         overridePendingTransition(R.anim.style_static, R.anim.push_down_out);
         finish();
     }

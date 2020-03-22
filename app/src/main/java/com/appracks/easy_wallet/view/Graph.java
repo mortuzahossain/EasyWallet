@@ -15,10 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.appracks.easy_wallet.MainActivity;
+import com.appracks.easy_wallet.OverViewActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.adapter.NDSpinner;
 import com.appracks.easy_wallet.data_object.BarDatas;
@@ -238,7 +237,7 @@ public class Graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDrawer.closeDrawer(GravityCompat.START);
-                startActivity(new Intent(Graph.this, MainActivity.class));
+                startActivity(new Intent(Graph.this, OverViewActivity.class));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 finish();
             }
@@ -271,12 +270,24 @@ public class Graph extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "You are here", Toast.LENGTH_LONG).show();
             }
         });
+
+        LinearLayout ly_tax_calculator = (LinearLayout) findViewById(R.id.ly_tax_calculator);
+        ly_tax_calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(Graph.this, Calculator.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
+
     }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         myDrawer.closeDrawer(GravityCompat.START);
-        startActivity(new Intent(Graph.this, MainActivity.class));
+        startActivity(new Intent(Graph.this, OverViewActivity.class));
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();
     }

@@ -26,7 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appracks.easy_wallet.MainActivity;
+import com.appracks.easy_wallet.OverViewActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.data_object.StatementData;
 import com.appracks.easy_wallet.database.DB_Manager;
@@ -245,7 +245,7 @@ public class AddStatement extends AppCompatActivity {
         }else if(from.equalsIgnoreCase("ex")){
             startActivity(new Intent(AddStatement.this,Expense.class).putExtra("cat_type",0));
         }else {
-            startActivity(new Intent(AddStatement.this,MainActivity.class));
+            startActivity(new Intent(AddStatement.this,OverViewActivity.class));
         }
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();

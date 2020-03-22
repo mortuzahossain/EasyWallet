@@ -222,6 +222,34 @@
                     android:textAppearance="?android:attr/textAppearanceListItemSmall"
                     android:textColor="@color/list_item_title" />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ly_tax_calculator"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/nav_list_selector"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_graph" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:text="Calculate Tax"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 

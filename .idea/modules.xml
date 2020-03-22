@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EasyWallet.iml" filepath="$PROJECT_DIR$/EasyWallet.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EasyWallet.iml" filepath="$PROJECT_DIR$/EasyWallet.iml" group="EasyWallet" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="EasyWallet/app" />
     </modules>
   </component>
 </project>

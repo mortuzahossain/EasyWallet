@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -24,7 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appracks.easy_wallet.MainActivity;
+import com.appracks.easy_wallet.OverViewActivity;
 import com.appracks.easy_wallet.R;
 import com.appracks.easy_wallet.adapter.CustomInterfaceAdapter;
 import com.appracks.easy_wallet.adapter.NDSpinner;
@@ -72,25 +71,25 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
 
         lay_category_wise=(LinearLayout)findViewById(R.id.lay_category_wise);
         iv_currency_in=(ImageView)findViewById(R.id.iv_currency_in);
-        if(MainActivity.sign.equalsIgnoreCase("DOLLAR")){
+        if(OverViewActivity.sign.equalsIgnoreCase("DOLLAR")){
             iv_currency_in.setImageResource(R.drawable.dollar_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("TAKA")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("TAKA")){
             iv_currency_in.setImageResource(R.drawable.taka_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("POUND")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("POUND")){
             iv_currency_in.setImageResource(R.drawable.pound_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("RUPEE")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("RUPEE")){
             iv_currency_in.setImageResource(R.drawable.rupee_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("RIAL")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("RIAL")){
             iv_currency_in.setImageResource(R.drawable.rial_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("EURO")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("EURO")){
             iv_currency_in.setImageResource(R.drawable.euro_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("YEN")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("YEN")){
             iv_currency_in.setImageResource(R.drawable.yen_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("YUAN")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("YUAN")){
             iv_currency_in.setImageResource(R.drawable.yuan_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("FRANC")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("FRANC")){
             iv_currency_in.setImageResource(R.drawable.franc_sign);
-        }else if(MainActivity.sign.equalsIgnoreCase("NO CURRENCY")){
+        }else if(OverViewActivity.sign.equalsIgnoreCase("NO CURRENCY")){
             iv_currency_in.setImageResource(R.drawable.no_currency);
         }
 
@@ -231,12 +230,22 @@ public class Income extends AppCompatActivity implements CustomInterfaceAdapter{
                 finish();
             }
         });
+        LinearLayout ly_tax_calculator = (LinearLayout) findViewById(R.id.ly_tax_calculator);
+        ly_tax_calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDrawer.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(Income.this, Calculator.class));
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                finish();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(Income.this, MainActivity.class));
+        startActivity(new Intent(Income.this, OverViewActivity.class));
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
         finish();
     }
